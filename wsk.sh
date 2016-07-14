@@ -3,6 +3,9 @@
 function print_help {
     echo "\
 
+Usage:
+./wsk.sh <command_name>
+
 Commands:
 
 build_dotfiles  build osx bashrc and other dotfiles
@@ -16,10 +19,13 @@ PREFS_DIR="./prefs"
 BUILD_DIR="./dotfiles"
 BASHRC=$BUILD_DIR/.bashrc
 
+# Adding prefs that need to go into .bashrc?
+# Add a file to this list
 bashrc_prefs=("bash/settings.pref" "bash/colors.pref" "bash/ps1.pref" "bash/darwin.pref" "ruby/rvm.pref" "node/node.pref" "python/python.pref" "python/virtualenv.pref" "brew/brew.pref" "sublime/subl.pref" "bash/aliases.pref")
 
-configs=("bash/.bash_profile" "git/.gitignore" "git/.gitconfig" "python/pdbrc.py" "ruby/.gemrc" "vim/.vimrc")
-
+# Adding a dofile to your ~/ directory?
+# Add it here.
+dotfiles=("bash/.bash_profile" "git/.gitignore" "git/.gitconfig" "python/pdbrc.py" "ruby/.gemrc" "vim/.vimrc")
 
 function build_dotfiles {
     rm -rf $BUILD_DIR
@@ -34,14 +40,16 @@ function build_dotfiles {
         fi
     done
 
-    for config in "${configs[@]}"
+    for dotfile in "${dotfiles[@]}"
     do
-        file_path=$PREFS_DIR/$config
+        file_path=$PREFS_DIR/$dotfile
         if [ -f $file_path ]; then
             cp $file_path $BUILD_DIR
         fi
     done
 }
+
+# Script argv handling
 
 argv=$1
 
