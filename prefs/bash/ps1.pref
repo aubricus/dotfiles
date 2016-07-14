@@ -1,2 +1,7 @@
-# Color variables come from prefs/colors
+
+# --------------------
+# Better PS1
+# - Requires __git_ps1
+# --------------------
+
 export  PS1=" ${PURPLE}\u ${B_WHITE}\w ${BLUE}\$(__git_ps1 \"(%s)\")\n${B_WHITE}\$(date +%H:%M) \$ ${COLOR_RESET}"

@@ -1,3 +1,8 @@
+
+# ------------------
+# Sublime Subl Setup
+# ------------------
+
 sublime3_cli="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
 link_target="/usr/local/bin/subl"
 

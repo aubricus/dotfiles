@@ -1,4 +1,8 @@
-# Reset
+
+# ---------------
+# Bash Color Vars
+# ---------------
+
 export COLOR_RESET='\[\e[0m\]'
 
 # Regular Colors

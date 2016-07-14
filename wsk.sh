@@ -1,33 +1,58 @@
 #!/usr/bin/env bash
 
 function print_help {
-    function print_help {
     echo "\
 
 Commands:
 
-build       build...
-link        link...
-help        prints this message
+build_dotfiles  build osx bashrc and other dotfiles
+                (builds in ./dotfiles)
+help            prints this message
 \
 "
 }
-}
 
-function build {
-    echo "build..."
-}
+PREFS_DIR="./prefs"
+BUILD_DIR="./dotfiles"
+BASHRC=$BUILD_DIR/.bashrc
 
-function link {
-    echo "link..."
+bashrc_prefs=("bash/settings.pref" "bash/colors.pref" "bash/ps1.pref" "bash/darwin.pref" "ruby/rvm.pref" "node/node.pref" "python/python.pref" "python/virtualenv.pref" "brew/brew.pref" "sublime/subl.pref" "bash/aliases.pref")
+
+configs=("bash/.bash_profile" "git/.gitignore" "git/.gitconfig" "python/pdbrc.py" "ruby/.gemrc" "vim/.vimrc")
+
+
+function build_dotfiles {
+    rm -rf $BUILD_DIR
+    mkdir -p $BUILD_DIR
+    touch $BASHRC
+
+    for pref in "${bashrc_prefs[@]}"
+    do
+        file_path=$PREFS_DIR/$pref
+        if [ -f $file_path ]; then
+            cat $file_path >> $BASHRC
+        fi
+    done
+
+    for config in "${configs[@]}"
+    do
+        file_path=$PREFS_DIR/$config
+        if [ -f $file_path ]; then
+            cp $file_path $BUILD_DIR
+        fi
+    done
 }
 
 argv=$1
 
-if [$argv = "build"]
-    build
+if [ $argv = "help" ]; then
+    print_help
 fi
 
-if [$argv = "link"]
-    link
+if [ $argv = "build_dotfiles" ]; then
+    echo "Building dotfiles..."
+    build_dotfiles
+    echo "Finished!"
+    exit 0
 fi
+

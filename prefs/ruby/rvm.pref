@@ -1,4 +1,8 @@
 
+# ----------
+# Ruby Prefs
+# ----------
+
 RVM_BIN=$HOME/.rvm/bin
 RVM_HOME="$HOME/.rvm"
 

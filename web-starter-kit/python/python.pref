@@ -1,5 +1,0 @@
-# Python Environment Settings
-# http://docs.python.org/using/cmdline.html#environment-variables
-
-# export PYTHONSTARTUP=$HOME/pycon/advpython2/pystartup.py
-# export PYTHONDONTWRITEBYTECODE=1
