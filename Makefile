@@ -1,0 +1,10 @@
+build:
+	@chmod +x ./wsk.sh
+	./wsk.sh build
+
+link:
+	@chod + ./wsk.sh
+	./wsk.sh link $(LINK_NAME)
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

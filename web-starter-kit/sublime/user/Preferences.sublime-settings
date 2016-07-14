@@ -1,0 +1,104 @@
+{
+    "added_words":
+    [
+        "refactor"
+    ],
+    "auto_complete_commit_on_tab": true,
+    "binary_file_patterns":
+    [
+        "*.jpg",
+        "*.jpeg",
+        "*.png",
+        "*.gif",
+        "*.ttf",
+        "*.tga",
+        "*.dds",
+        "*.ico",
+        "*.eot",
+        "*.pdf",
+        "*.swf",
+        "*.jar",
+        "*.zip"
+    ],
+    "bold_folder_labels": true,
+    "default_encoding": "UTF-8",
+    "default_line_ending": "unix",
+    "draw_white_space": "all",
+    "ensure_newline_at_eof_on_save": true,
+    "fallback_encoding": "UTF-8",
+    "file_exclude_patterns":
+    [
+        "*.pyc",
+        "*.pyo",
+        "*.exe",
+        "*.dll",
+        "*.obj",
+        "*.o",
+        "*.a",
+        "*.lib",
+        "*.so",
+        "*.dylib",
+        "*.ncb",
+        "*.sdf",
+        "*.suo",
+        "*.pdb",
+        "*.idb",
+        ".DS_Store",
+        "*.class",
+        "*.psd",
+        "*.db"
+    ],
+    "folder_exclude_patterns":
+    [
+        ".svn",
+        ".hg",
+        "CVS",
+        ".sass-cache",
+        "__pycache__"
+    ],
+    "font_size": 11.0,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "overlay_scroll_bars": "enabled",
+    "rulers":
+    [
+        79,
+    ],
+    "scroll_past_end": true,
+    "spell_check": false,
+    "translate_tabs_to_spaces": true,
+    "tree_animation_enabled": false,
+    "trim_automatic_white_space": true,
+    "trim_trailing_white_space_on_save": true,
+    "word_wrap": false,
+
+    // --------------------
+    // Materialize Settings
+    // --------------------
+    // Note: Installing these on copy had some issues, simply uncomment them
+    // after the copy is complete
+
+
+    // "material_theme_accent_indigo": true,
+    // "material_theme_accent_lime": true,
+    // "material_theme_accent_orange": true,
+    // "material_theme_accent_purple": true,
+    // "material_theme_accent_red": true,
+    // "material_theme_accent_yellow": true,
+    // "material_theme_bold_tab": true,
+    // "material_theme_contrast_mode": true,
+    // "material_theme_disable_fileicons": true,
+    // "material_theme_disable_folder_animation": false,
+    // "material_theme_disable_tree_indicator": false,
+    // "material_theme_small_statusbar": true,
+    // "material_theme_small_tab": true,
+    // "bold_folder_labels": true,
+    // "caret_extra_bottom": 2,
+    // "caret_extra_top": 2,
+    // "caret_extra_width": 2,
+    // "caret_style": "phase",
+    // "color_scheme": "Packages/User/Material Dracula (Flake8Lint).tmTheme",
+    // "theme": "Material Dracula.sublime-theme",
+}

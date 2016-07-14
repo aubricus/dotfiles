@@ -1,0 +1,7 @@
+sublime3_cli="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
+link_target="/usr/local/bin/subl"
+
+if [ -f "$sublime3_cli" ] && [ ! -f "$link_target" ]; then
+    ln -s "$sublime3_cli" "$link_target"
+
+fi

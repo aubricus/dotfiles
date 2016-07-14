@@ -1,0 +1,2 @@
+# Color variables come from prefs/colors
+export  PS1=" ${PURPLE}\u ${B_WHITE}\w ${BLUE}\$(__git_ps1 \"(%s)\")\n${B_WHITE}\$(date +%H:%M) \$ ${COLOR_RESET}"

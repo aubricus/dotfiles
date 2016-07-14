@@ -1,0 +1,3 @@
+NODE_BIN=$HOME/.node/bin
+
+export PATH=$NODE_BIN:$PATH

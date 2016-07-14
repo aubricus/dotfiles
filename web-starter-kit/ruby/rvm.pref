@@ -1,0 +1,11 @@
+
+RVM_BIN=$HOME/.rvm/bin
+RVM_HOME="$HOME/.rvm"
+
+if [ -d "$RVM_HOME" ]; then
+  source $RVM_HOME/scripts/rvm
+else
+  echo 'rvm is not installed...'
+fi
+
+export PATH=$RVM_BIN:$PATH

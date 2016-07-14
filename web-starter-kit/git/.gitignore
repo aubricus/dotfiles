@@ -1,0 +1,152 @@
+# --------------
+# Package Config
+# --------------
+
+*.jscsrc
+
+
+# ----------------
+# Ignore Other Vcs
+# ----------------
+
+.svn
+.hg
+
+# ---------------
+# Compiled Source
+# ---------------
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# -------------
+# Always Ignore
+# -------------
+
+*.diff
+*.err
+*.orig
+*.rej
+*~
+*.psd
+*.vi
+nohup.out
+
+# --------
+# Packages
+# --------
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# ------------------
+# Logs and Databases
+# ------------------
+
+*.log
+*.sql
+*.sqlite
+pip-log.txt
+
+# ------------------
+# OS Generated Files
+# ------------------
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ------------
+# Editor Files
+# ------------
+
+*.swp
+.cache
+.project
+.pydevproject
+.settings
+.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------
+# SCSS Pre-compiler Dirs
+# -----------------------
+
+.sass-cache/
+
+# -----------------------
+# Translations
+# -----------------------
+
+*.mo
+
+# ------
+# Python
+# ------
+
+__pycache__
+
+# -----------------------
+# Django
+# -----------------------
+
+*.log
+*.pot
+*.pyc
+local_settings.py
+*.db
+collected-static/*
+uploads/*
+!collected-static/.gitkeep
+!uploads/README
+celerybeat-schedule
+celerybeat.pid
+
+# -----------------------
+# Packge Mgmt
+# -----------------------
+
+node_modules
+jspm_packages
+
+# -----------------------
+# Unit test / coverage
+# -----------------------
+
+.coverage
+.tox
+
+# -----------------------
+# Dreamweaver Added Files
+# -----------------------
+
+_notes
+dwsync.xml
