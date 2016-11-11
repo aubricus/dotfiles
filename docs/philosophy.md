@@ -1,3 +1,0 @@
-# Web Starter Kit Philosophy
-
-...

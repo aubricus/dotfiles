@@ -1,7 +1,0 @@
-
-# ---------------------------
-# Python Environment Settings
-# see: http://bit.ly/29KFKQv
-# ---------------------------
-
-export PYTHONDONTWRITEBYTECODE=1

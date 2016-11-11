@@ -1,3 +1,0 @@
-# Cheatshee – Sublime Text
-
-...

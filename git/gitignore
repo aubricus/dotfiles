@@ -1,0 +1,27 @@
+# -------------------------------------
+# OS OR EDITOR FILES
+# -------------------------------------
+._*
+.DS_Store
+Thumbs.db
+
+# -------------------------------------
+# FILES THAT MIGHT APPEAR ON EXTERNAL DISKS
+# -------------------------------------
+.Spotlight-V100
+.Trashes
+
+
+# -------------------------------------
+# ALWAYS-IGNORE EXTENSIONS
+# -------------------------------------
+*~
+*.diff
+*.err
+*.log
+*.orig
+*.pyc
+*.rej
+*.sass-cache
+*.sw?
+*.vi
