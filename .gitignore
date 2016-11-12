@@ -1,1 +1,6 @@
-dotfiles
+# Ignore private files
+*.private
+
+# Ignore Symlinks
+pkg-enabled/
+bin/dotfiles

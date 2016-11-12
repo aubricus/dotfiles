@@ -1,0 +1,8 @@
+split-window -v
+resize-pane -D 5
+split-window -h
+resize-pane -L 40
+split-window -h
+select-pane -U
+split-window -h
+select-pane -L

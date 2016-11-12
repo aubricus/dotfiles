@@ -1,0 +1,33 @@
+# -------------------------------------
+# OSX BREWFILE
+# -------------------------------------
+# https://robots.thoughtbot.com/brewfile-a-gemfile-but-for-homebrew
+
+cask_args appdir: '/Applications'
+
+tap 'homebrew/bundle'
+
+brew "bash"
+brew "bash-completion"
+brew "coreutils"
+brew "git"
+brew "jpeg"
+brew "openssl"
+brew "optipng"
+brew "python"
+brew "python3"
+brew "tmux"
+brew "tree"
+brew "wget"
+
+cask "1password"
+cask "docker"
+cask "firefox"
+cask "google-chrome"
+cask "iterm2"
+cask "kaleidoscope"
+cask "opera"
+cask "sublime-text"
+cask "slack"
+cask "spotify"
+cask "visual-studio-code"

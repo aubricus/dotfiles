@@ -1,0 +1,6 @@
+split-window -h
+split-window -h
+select-pane -L
+select-pane -L
+split-window -h
+select-pane -L

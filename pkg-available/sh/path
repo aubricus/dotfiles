@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# BASH PATHS
+# -------------------------------------
+
+
+declare -a prepend=(
+    # Brew path, must preceed others
+    "/usr/local/bin"
+)
+
+declare -a append=(
+    "/usr/bin"
+    "$HOME/bin"
+)
+
+for i in ${!prepend[*]}
+do
+    if [ -d ${prepend[$i]} ]; then
+        PATH="${prepend[$i]}:$PATH"
+    fi
+done
+
+for i in ${!append[*]}
+do
+    if [ -d ${append[$i]} ]; then
+        PATH="$PATH:${append[$i]}"
+    fi
+done
+
+unset prepend append
+
+export PATH

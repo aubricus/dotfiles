@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# BASH PROFILE
+# -------------------------------------
+
+# Set this to wherever the dotfiles repo is located (required).
+export DOTFILES_DIR="${HOME}/Repos/dotfiles"
+
+# Up-front dotfiles configuration
+# =====================================
+
+# Put anything that _must_ happen
+# before everything else in this file
+[ -e "${HOME}/.dotfilesrc" ] && source "${HOME}/.dotfilesrc";
+
+# Import some helper from dotfiles
+[ -e "$DOTFILES_DIR/lib/functions" ] && source "$DOTFILES_DIR/lib/functions";
+
+# Put dotfile/bin in the path
+export PATH="$DOTFILES_DIR/bin":$PATH
+
+# Start session
+log_info "Hello $USER! Configuring session..."
+
+# Source configured package files
+src_all $DOTFILES_DIR
+
+# Remove all imports
+unset_functions

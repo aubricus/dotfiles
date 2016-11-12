@@ -1,0 +1,36 @@
+# -------------------------------------
+# ALWAYS IGNORE
+# -------------------------------------
+
+*.mo
+node_modules/
+.sass-cache/
+._*
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+*~
+*.diff
+*.err
+*.log
+*.orig
+*.pyc
+*.rej
+*.sass-cache
+*.sw?
+*.vi
+nohup.out
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.egg
+*.egg-info
+*.swp
+*.sublime-project
+*.sublime-workspace

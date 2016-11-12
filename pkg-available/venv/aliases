@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# VENV ALIASES
+# -------------------------------------
+
+
+alias mkenv='mkvirtualenv'
+alias rmenv='rmvirtualenv'
+alias chenv='workon'
+alias denv='deactivate'
+alias lsenv='lsvirtualenv'

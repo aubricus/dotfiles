@@ -1,0 +1,637 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# FUNCTIONS
+# -------------------------------------
+
+declare -a functions_h=(
+    "seek_confirmation" "is_confirmed" "is_git_repo" "type_exists" "do_link"
+    "do_copy" "log_header" "log_error" "log_success" "log_info" "log_warning"
+    "setup" "add_package" "remove_package" "add_all" "remove_all" "link_entry"
+    "run_entry" "get_path" "src_all unset_functions"
+)
+
+unset_functions() {
+    unset ${functions_h[*]}
+}
+
+# Bash Helpers
+# =====================================
+
+# Seek confirmation before proceeding
+#
+# Example:
+# seek_confirmation "Would you like to proceed?"
+#
+# See: is_confirmed
+seek_confirmation() {
+    printf "\n"
+    log_warning "$@"
+    read -p "> Please answer: (y/n) " -n 1
+    printf "\n"
+}
+
+# Test for confirmation from seek_confirmation
+#
+# Example:
+# if is_confirmed; then
+#     printf "Was confirmed!\n"
+# else
+#     printf "Aborting...\n"
+#     exit 1
+# fi
+is_confirmed() {
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+      return 0
+    fi
+    return 1
+}
+
+# Test whether we're in a git repo
+is_git_repo() {
+    $(git rev-parse --is-inside-work-tree &> /dev/null)
+}
+
+# Test whether a command exists
+# $1 $type type to test
+type_exists() {
+    if [ $(type -P $1) ]; then
+      return 0
+    fi
+    return 1
+}
+
+# Symlink a file
+#
+# Options:
+# -f, force
+# -s, symbolic
+#
+# Arguments:
+# $1 $src The link source file
+# $2 $dest The link destination
+#
+# Example:
+# do_link $src $dest
+do_link() {
+    # rm makes sure the link is removed before creating another
+    # -f suppresses error if ln does not exist
+    # see: http://unix.stackexchange.com/a/267572
+    rm -f "${2}"
+    ln -s "${1}" "${2}"
+}
+
+# Copy a file
+#
+# Options:
+# -R, recursive
+# -f, force
+#
+# Arguments:
+# $1 $src The source file
+# $2 $dest The file destination
+#
+# Example:
+# do_copy $src $dest
+do_copy() {
+    cp -Rf "${1}" "${2}"
+}
+
+# Logging
+# =====================================
+
+# Simple log to stdout functions
+#
+# Example:
+# if ! true; then
+#   log_error "Ack! Was not true!"
+#
+# More Colors:
+# - https://github.com/c00kiemon5ter/dotfiles/blob/master/.shell.colors.tput
+
+log_header() {
+    # cyan
+    printf "\n$(tput setaf 6)%s$(tput sgr0)\n" "$@"
+}
+
+log_success() {
+    # green
+    printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$@"
+}
+
+log_error() {
+    # red
+    printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$@"
+}
+
+log_warning() {
+    # orange
+    printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$@"
+}
+
+log_info() {
+    # gray
+    printf "$(tput setaf 7)▸ %s$(tput sgr0)\n" "$@"
+}
+
+# Dotfiles
+# =====================================
+
+# Dotfiles initial setup script
+#
+# # Arguments:
+# $1: $dotfiles The dotfiles directory
+#
+# Example:
+# setup $dotfiles
+setup() {
+    log_header "Running setup..."
+
+    local dotfiles="${1}"
+
+    # Symlink dotfiles.sh to /bin/dotfiles
+    # so dotfiles is available globally after setup.
+    do_link "$dotfiles/scripts/dotfiles.sh" "$dotfiles/bin/dotfiles"
+
+    # Copy entry points into $HOME
+    do_link "$dotfiles/dotfiles/dotfilesrc" "${HOME}/.dotfilesrc"
+    do_link "$dotfiles/dotfiles/bash_profile" "${HOME}/.bash_profile"
+
+    log_success "Done!"
+    log_warning "Please restart your session!"
+}
+
+# Attempt to add a specified package
+#
+# Addition is simple:
+# 1. If the package exists in pkg_available
+# 2. It gets symlinked into pkg_enabled
+# 3. Link entries in conf.sh => links
+# 4. Copy entries in conf.sh => copy
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+# $2: $pkg_name A valid package name
+#
+# Example:
+# add_package $dotfiles $pkg_name
+add_package() {
+    log_header "Attempting to add package: ${2}..."
+
+    local dotfiles="${1}"
+    local pkg_name="${2}"
+    local pkg_available_dir="$dotfiles/pkg-available"
+    local pkg_enabled_dir="$dotfiles/pkg-enabled"
+    local pkg_available="$pkg_available_dir/$pkg_name"
+    local pkg_enabled="$pkg_enabled_dir/$pkg_name"
+
+    # Check for invalid package name
+    if [[ ! -d "$pkg_available" ]]; then
+        log_error "Could not find package: $pkg_name"
+        exit 1
+    fi
+
+    # Create symlink
+    log_info "Creating symlink... "
+    do_link "$pkg_available" "$pkg_enabled"
+
+    # -L, test for symlink
+    # -d, test for dir
+    [[ -L "$pkg_enabled" && -d "$pkg_enabled" ]] && log_success "Done!"
+
+    local conf="$pkg_enabled/conf.sh"
+
+    # Fail if conf.sh is not found
+    if [[ ! -e "$conf" ]]; then
+        log_error "Could not find configuration for: $pkg_name"
+        rm -rf "$pkg_enabled"
+        exit 1
+    fi
+
+    # Load package conf, valid vars:
+    # - links, copy, src, pkg_name
+    source $conf
+
+    # Loop over link entries
+    log_info "Linking files..."
+    for i in ${!links[*]}
+    do
+        _IFS=IFS
+        local src_dest="${links[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local src="$pkg_enabled/${arr[0]}"
+        local dest="${arr[1]}"
+
+        # -r, test for file readable
+        # -e, test for file exists
+        if [[ -r "$src" ]]; then
+
+            do_link "$src" "$dest"
+
+            [[ -e "$dest" ]] && log_success "Linked $dest"
+        else
+            log_error "Could not find source file: $src, skipping..."
+        fi
+
+        # Clean up
+        IFS=_IFS
+        unset arr src dest src_dest
+    done
+    log_success "Done!"
+
+    # Loop over copy entries
+    log_info "Copying files..."
+    for i in ${!copy[*]}
+    do
+        _IFS=IFS
+        local src_dest="${copy[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local src="$pkg_enabled/${arr[0]}"
+        local dest="${arr[1]}"
+
+        # -r, test for file readable
+        # -e, test for file exists
+        if [[ -r "$src" ]]; then
+            do_copy "$src" "$dest"
+            [[ -e "$dest" ]] && log_success "Copied $dest"
+        else
+            log_error "Could not find source file: $src, skipping..."
+        fi
+
+        # Clean up
+        IFS=_IFS
+        unset arr src dest src_dest
+    done
+    log_success "Done!"
+}
+
+# Attempt to remove a specified package
+#
+# Removal is simple:
+# 1. If the package exists in pkg_enabled
+# 2. Remove link entries in conf.sh => links
+# 3. Remove copy entries in conf.sh => copy
+# 4. Remove symlink
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+# $2: $pkg_name A valid package name
+#
+# Example:
+# remove_package $dotfiles $pkg_name
+remove_package() {
+    log_header "Attempting to remove package: ${2}..."
+
+    local pkg_name="${2}"
+    local dotfiles="${1}"
+    local pkg_available_dir="$dotfiles/pkg-available"
+    local pkg_enabled_dir="$dotfiles/pkg-enabled"
+    local pkg_available="$pkg_available_dir/$pkg_name"
+    local pkg_enabled="$pkg_enabled_dir/$pkg_name"
+
+    # Check for invalid package name
+    if [[ ! -d "$pkg_enabled" ]]; then
+        log_error "Could not find package: $pkg_name"
+        exit 1
+    fi
+
+    local conf="$pkg_enabled/conf.sh"
+
+    # Fail if conf.sh is not found
+    if [[ ! -e "$conf" ]]; then
+        log_error "Could not find configuration for: $pkg_name"
+        rm -rf "$pkg_enabled"
+        exit 1
+    fi
+
+    # Load package conf, valid vars:
+    # - links, copy, src, pkg_name
+    source $conf
+
+    # Loop over link entries
+    log_info "Removing linked files..."
+    for i in ${!links[*]}
+    do
+        _IFS=IFS
+        local src_dest="${links[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local dest="${arr[1]}"
+
+        # -r, test for file readable
+        # -e, test for file exists
+        if [[ -r "$dest" ]]; then
+            rm -rf "$dest"
+            [[ ! -e "$dest" ]] && log_success "Unlinked $dest"
+        else
+            log_error "Could not find file: $dest, skipping..."
+        fi
+
+        # Clean up
+        IFS=_IFS
+        unset arr dest src_dest
+    done
+    log_success "Done!"
+
+    # Remove copy entries
+    log_info "Removing copyied files..."
+    for i in ${!copy[*]}
+    do
+        _IFS=IFS
+        local src_dest="${copy[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local dest="${arr[1]}"
+
+        # -r, test for file readable
+        # -e, test for file exists
+        if [[ -r "$dest" ]]; then
+            rm -rf "$dest"
+            [[ ! -e "$dest" ]] && log_success "Removed $dest"
+        else
+            log_error "Could not find file: $dest, skipping..."
+        fi
+
+        # Clean up
+        IFS=_IFS
+        unset arr src dest src_dest
+    done
+    log_success "Done!"
+
+    # Remove symlink
+    log_info "Removing symlink... "
+    rm -rf "$pkg_enabled"
+
+    # -L, test for symlink
+    [[ ! -L "$pkg_enabled" ]] && log_success "Done!"
+}
+
+# Add all available packages
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+#
+# Example:
+# add_all $dotfiles
+#
+# See: add_package
+add_all() {
+    log_header "Installing all available packages..."
+
+    local dotfiles="${1}"
+    local dotfiles_pkg="$dotfiles/pkg-available"
+
+    # Must capture result here, piping this into
+    # a while loop puts source calls into a subshell
+    # which prevents them from affecting the
+    # current session.
+
+    # Find all directories and return only dir names
+    # See: http://stackoverflow.com/a/5458777
+    local -a packages=($(find $dotfiles_pkg -type d -mindepth 1 -maxdepth 1 -exec basename {} \;))
+
+    for i in ${!packages[*]}
+    do
+        pkg="${packages[$i]}"
+        add_package $dotfiles $pkg
+    done
+}
+
+# Remove all enabled packages
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+#
+# Example:
+# remove_all $dotfiles
+#
+# See: remove_package
+remove_all() {
+    log_header "Uninstalling all enabled packages..."
+
+    local dotfiles="${1}"
+    local dotfiles_pkg="$dotfiles/pkg-enabled"
+
+    # Must capture result here, piping this into
+    # a while loop puts source calls into a subshell
+    # which prevents them from affecting the
+    # current session.
+
+    # Find all directories and return only dir names
+    # See: http://stackoverflow.com/a/5458777
+    local -a packages=($(find $dotfiles_pkg -type l -mindepth 1 -maxdepth 1 -exec basename {} \;))
+
+    for i in ${!packages[*]}
+    do
+        pkg="${packages[$i]}"
+        remove_package $dotfiles $pkg
+    done
+}
+
+# [Re]Copy a package entry
+# # Arguments:
+# $1: $dotfiles The dotfiles directory
+# $2: $pkg_name A valid package name
+# $3: $pkg_entry A valid package file name
+#
+# Example:
+# copy_entry $dotfiles $pkg_name $pkg_entry
+copy_entry() {
+    dotfiles="${1}"
+    pkg_name="${2}"
+    pkg_entry="${3}"
+    pkg_enabled_dir="$dotfiles/pkg-enabled"
+    pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    conf="$pkg_enabled/conf.sh"
+
+    # Fail if conf.sh is not found
+    if [[ ! -e "$conf" ]]; then
+        log_error "Could not find configuration for: $pkg_name"
+        exit 1
+    fi
+
+    source $conf
+
+    for i in ${!copy[*]}
+    do
+        _IFS=IFS
+        local src_dest="${copy[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local src="$pkg_enabled/${arr[0]}"
+        local dest="${arr[1]}"
+
+        # Clean up
+        IFS=_IFS
+        unset arr
+
+        if [[ -e "$src" && "$src" == "$pkg_enabled/$pkg_entry" ]]; then
+            do_copy "$src" "$dest"
+            log_success "Copied $src -> $dest"
+            break;
+        else
+            log_error "Could not find source file: $src!"
+        fi
+    done
+}
+
+# [Re]Link a package entry
+# # Arguments:
+# $1: $dotfiles The dotfiles directory
+# $2: $pkg_name A valid package name
+# $3: $pkg_entry A valid package file name
+#
+# Example:
+# link_entry $dotfiles $pkg_name $pkg_entry
+link_entry() {
+    dotfiles="${1}"
+    pkg_name="${2}"
+    pkg_entry="${3}"
+    pkg_enabled_dir="$dotfiles/pkg-enabled"
+    pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    conf="$pkg_enabled/conf.sh"
+
+    # Fail if conf.sh is not found
+    if [[ ! -e "$conf" ]]; then
+        log_error "Could not find configuration for: $pkg_name"
+        exit 1
+    fi
+
+    source $conf
+
+    for i in ${!links[*]}
+    do
+        _IFS=IFS
+        local src_dest="${links[$i]}"
+
+        # Bash string "split"
+        # See: http://stackoverflow.com/a/918931
+        IFS=':' read -a arr <<< "$src_dest"
+
+        local src="$pkg_enabled/${arr[0]}"
+        local dest="${arr[1]}"
+
+        # Clean up
+        IFS=_IFS
+        unset arr
+
+        if [[ -e "$src" && "$src" == "$pkg_enabled/$pkg_entry" ]]; then
+            do_link "$src" "$dest"
+            log_success "Linked $src -> $dest"
+            break;
+        else
+            log_error "Could not find source file: $src!"
+        fi
+    done
+}
+
+# Get an absolute path to a package file.
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+# $2: $pkg_name A valid package name
+# $3: $pkg_entry A valid package file name
+#
+# Example:
+# get_path $dotfiles $pkg_name $pkg_entry
+get_path() {
+    dotfiles="${1}"
+    pkg_name="${2}"
+    pkg_entry="${3}"
+    pkg_enabled_dir="$dotfiles/pkg-enabled"
+    pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    abs_path="$pkg_enabled/$pkg_entry"
+
+    # Fail if conf.sh is not found
+    if [[ -e "$abs_path" ]]; then
+        printf "$abs_path"
+    fi
+}
+
+# [Re]Run a package script
+#
+# Arguments:
+# $1:     $dotfiles The dotfiles directory
+# $2:     $pkg_name A valid package name
+# $3:     $pkg_entry A valid package file name
+# ${@:4}: $argv Arguments to pass to script
+#
+# Example:
+# run_entry $dotfiles $pkg_name $pkg_entry
+run_entry() {
+    dotfiles="${1}"
+    pkg_name="${2}"
+    pkg_entry="${3}"
+    pkg_enabled_dir="$dotfiles/pkg-enabled"
+    pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    to_run="$pkg_enabled/$pkg_entry"
+    run_args="${@:4}"
+
+    # Fail if conf.sh is not found
+    if [[ -e "$to_run" ]]; then
+        bash $to_run $run_args
+        [[ $? ]] && log_success "Ran file $to_run"
+    else
+        log_error "Could not find file: $to_run"
+        exit 1
+    fi
+}
+
+# Source readable files en-mass from a packages for entries in conf.sh
+#
+# Arguments:
+# $1: The dotfiles directory
+#
+# Example:
+# src_all $DOTFILES_DIR
+src_all() {
+    local dotfiles="${1}"
+    local dotfiles_pkg="$dotfiles/pkg-enabled"
+
+    # Must capture result here, piping this into
+    # a while loop puts source calls into a subshell
+    # which prevents them from affecting the
+    # current session.
+
+    local -a packages=($(find $dotfiles_pkg -type l -mindepth 1))
+
+    for i in ${!packages[*]}
+    do
+        pkg="${packages[$i]}"
+        conf="$pkg/conf.sh"
+
+        [[ ! -r $conf ]] && continue
+
+        source $conf
+
+        # Loop over source entries
+        for i in ${!src[*]}
+        do
+            local to_src="$pkg/${src[$i]}"
+
+            # -r, test for readable file
+            if [[ -r $to_src ]]; then
+                log_info "Sourcing File: $to_src"
+                source $to_src
+            fi
+        done
+    done
+    log_success "Done!"
+}

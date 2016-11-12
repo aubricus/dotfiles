@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# TEST ALIASES
+# -------------------------------------
+
+echo "test aliases loaded"
+
+alias tst='echo test'

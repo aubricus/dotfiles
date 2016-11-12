@@ -1,0 +1,4 @@
+- Is there a way / frameworks to unit test bash?
+
+- `dotfiles pkg new foobar`
+    - create a  new package with conf

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# VENVRC
+# -------------------------------------
+
+
+export WORKON_HOME="${HOME}/.virtualenv"
+export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_RESPECT_VIRTUALENV=true
+
+# Try loading venvwrappers from possible install locations
+
+venvwrappers[0]="/usr/local/share/python/virtualenvwrapper.sh"
+venvwrappers[1]="$HOME/.virtualenv/default/bin/virtualenvwrapper.sh"
+venvwrappers[2]="/usr/local/bin/virtualenvwrapper.sh"
+
+for venvwrapper in "${venvwrappers[@]}"
+do
+    if [ -f $venvwrapper ]; then
+        source $venvwrapper
+    fi
+done
+
+# Load and / or create default virtual env
+
+default_env="${WORKON_HOME}/py2"
+
+if [ -d "$default_env" ]; then
+    . "$default_env/bin/activate"
+else
+    virtualenv $default_env
+    . $default_env/bin/activate
+fi

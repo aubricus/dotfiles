@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# DOCKER ALIASES
+# -------------------------------------
+
+
+function docker-stop { docker stop $(docker ps -q); }
+function docker-clean { docker rmi $(docker images -q --filter \"dangling=true\"); }
