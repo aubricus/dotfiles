@@ -43,6 +43,9 @@ init_repository() {
     # Reset the index and working tree to the fetched HEAD
     git reset --hard FETCH_HEAD
 
+    # Set the proper upsteram
+    git branch -u origin/master
+
     # Remove any untracked files
     git clean -fd
 }
@@ -118,12 +121,10 @@ setup $DOTFILES_DIR
 
 # All done!
 log_success "Install finished!"
+log_info "Run: . ~/.bash_profile"
+log_info "And then..."
 log_info "Run: dotfiles --help to see usage."
 
 # Cleanup
 unset get_dotfiles init_repository backup_dotfile backup_dotfiles
 unset_functions
-
-# This _must_ happen last!
-# Source bash profile for this session
-source "${HOME}/.bash_profile"

@@ -197,7 +197,7 @@ This gets loaded _before everything else_. It's there should you need it.
 
 For convenience dotfiles will add `dotfiles/bin` to your path so you can also store and version utilities you write. There's no magic here, just make sure anything you want to run in this dir is executable.
 
-> After `scripts/dotfiles.sh setup` is run a symlink to `dotfiles` is created so you can reference the `dotfiles` cli globally.
+> For example: After `scripts/dotfiles.sh setup` or `scripts/install.sh` is run a symlink to `dotfiles` is created so you can reference the `dotfiles` cli globally.
 
 ### Private Files
 
