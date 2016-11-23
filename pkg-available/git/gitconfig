@@ -12,16 +12,18 @@
     remotes = remote -v
 
     # List branches
-    branches = branch -r -vv
+    branches = branch -ra -vv
 
     # Handy commit shortcuts
-    short-commit = "!f() { git commit -m '$1'; }; f"
+    c =  commit
     save = commit -m "stash"
-    chore = "!f() { git commit -m 'chore$1'; }; f"
-    refactor = "!f() { git commit -m 'refactor$1'; }; f"
-    feature = "!f() { git commit -m 'feature$1'; }; f"
     redo = commit -a --amend --no-edit
     rewrite = commit --amend
+
+    # Push shortcuts
+    # $() returns current branch name
+    push-topic = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+    ramrod = push -f
 
     # Re-base shortcuts
     rbo = "!f() { git rebase origin/$1; }; f"
