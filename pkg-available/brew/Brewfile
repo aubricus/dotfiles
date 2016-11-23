@@ -18,6 +18,7 @@ brew "python3"
 brew "tmux"
 brew "tree"
 brew "wget"
+brew "vim"
 
 cask "1password"
 cask "docker"
@@ -30,3 +31,5 @@ cask "sublime-text"
 cask "slack"
 cask "spotify"
 cask "visual-studio-code"
+cask "spectacle"
+
