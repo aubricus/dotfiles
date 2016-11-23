@@ -23,7 +23,7 @@ log_info() {
 
 get_dotfiles() {
     # Create dir
-    mkdir ${DOTFILES_DIR}
+    mkdir -p ${DOTFILES_DIR}
 
     # Download tarball
     curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL}
