@@ -14,7 +14,7 @@ set -eu -o pipefail
 # Absolute path to the dotfiles repo.
 #
 # Notes:
-# - Set this variable in dotfiles/bash_profile.
+# - Set this variable in dotfiles/bash_profile
 # - Additionally, if this is a first-run,
 #   export the variable for the current session and run setup.
 #
@@ -37,16 +37,6 @@ run_help() {
 cat <<EOT
 Dotfiles - Aubrey Taylor - http://github.com/aubricus/dotfiles
 
-Usage:
-    dotfiles (-h | --help)
-    dotfiles <command>
-    dotfiles add <package_name>
-    dotfiles rm <package_name>
-    dotfiles link <package_name> <entry_name>
-    dotfiles copy <package_name> <entry_name>
-    dotfiles run <pakcage_name> <script_name>
-    dotfiles path <package_name> <entry_name>
-
 Commands:
     setup           Run setup
     add             Add a package
@@ -57,6 +47,16 @@ Commands:
     path            Get absolute path to package file (see Examples)
     all             Add all available pacakges
     none            Remove all enabled packages
+
+Usage:
+    dotfiles (-h | --help)
+    dotfiles <command>
+    dotfiles add <package_name>
+    dotfiles rm <package_name>
+    dotfiles link <package_name> <entry_name>
+    dotfiles copy <package_name> <entry_name>
+    dotfiles run <pakcage_name> <script_name>
+    dotfiles path <package_name> <entry_name>
 
 Options:
     -h, --help      Print this help message
