@@ -2,3 +2,5 @@
 
 - `dotfiles pkg new foobar`
     - create a  new package with conf
+
+- Eventually create a config to submodule in package from another repo to decouple my prefs from this repo

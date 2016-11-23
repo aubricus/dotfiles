@@ -16,33 +16,83 @@ Many thanks to the following for the inspiration and code examples:
 
 A package-based dotfile repo attempting to quell the chaos that is dotfiles.
 
+## First Time Setup
+
+> __Note__: This is only necessary if this is your first time here.
+
+1. [__Fork this repository__](#why-should-i-fork).
+2. Change the necessary paths (See Figs. 1.0, 1.1 below).
+3. Commit & Push your changes.
+4. Delete your repo if you checked it out locally.
+4. Run the install command below (See: [Installation](#installation))
+
+```bash
+# scripts/install.sh
+
+# The (eventual) path to the dotfiles repository
+# Note: This dir doesn't exist yet
+DOTFILES_DIR="/absolute/path/to/repo"
+
+# Update your GitHub username below
+DOTFILES_TARBALL="https://github.com/<gh_username>/dotfiles/tarball/master"
+DOTFILES_REMOTE="git@github.com:<gh_username>/dotfiles.git"
+```
+__Fig 1.0__
+
+```bash
+# dotfiles/bash_profile
+
+# The (eventual) path to the dotfiles repository
+export DOTFILES_DIR="/absolute/path/to/repo"
+```
+__Fig 1.1__
+
+<a name="installation"></a>
+## Installation
+
+Run the following:
+
+> __Note__: Update with your Github username.
+
+```bash
+bash -c "$(curl -fsSL raw.githubusercontent.com/<gh_username>/dotfiles/master/scripts/install.sh)"
+```
+
 ## What's inside?
 
-Lots. All likely incompatible with your system, hardware, or workflow. The main purpose of this repo is to create a flexible system to easily manage settings. Personally, I use it to sync settings between my work and personal machines.
+Lots...and all likely incompatible with your system, hardware, and / or workflow.
 
-> You can take a look at what's here if you like; everything is in `pkg-available/`.
+> You can take a look at what's here if you like; everything is in `pkg-available/` but I recommend starting from scratch.
 
 __Want to start from scratch?__
 
-Just fork this repo and empty out `pkg-available`. That's it!
-
-## Installation
-
-> TODO: Write
+Just [__fork this repo__](#why-should-i-fork) and empty out `pkg-available`. That's it!
 
 ## Features
 
 - Organizes system settings and prefs into a single, version-controlled (git) location.
 - Provides conventions to store settings in discrete packages.
+- Auto-install script
 - Robust command-line to manage packages and settings.
 - Auto-loaded / versioned `/bin` for small scripts / utils.
 - Allows private / local settings.
-- Decent console output. 👾
+- Decent console output. :space_invader:
 
 ## Command-Line
 
 ```text
 Dotfiles - Aubrey Taylor - http://github.com/aubricus/dotfiles
+
+Commands:
+    setup           Run setup
+    add             Add a package
+    remove          Remove a package
+    copy            [Re]Copy a file from a package
+    link            [Re]Link a file from a package
+    run             [Re]Run a file from a package
+    path            Get absolute path to package file (see Examples)
+    all             Add all available packages
+    none            Remove all enabled packages
 
 Usage:
     dotfiles (-h | --help)
@@ -54,17 +104,6 @@ Usage:
     dotfiles run <pakcage_name> <script_name>
     dotfiles path <package_name> <entry_name>
 
-Commands:
-    setup           Run setup
-    add             Add a package
-    remove          Remove a package
-    copy            [Re]Copy a file from a package
-    link            [Re]Link a file from a package
-    run             [Re]Run a file from a package
-    path            Get absolute path to package file (see Examples)
-    all             Install all available pacakges
-    none            Uninstall all enabled packages
-
 Options:
     -h, --help      Print this help message
 
@@ -72,9 +111,9 @@ Examples:
     source $(dotfiles path foo bar)
 ```
 
-## Packages
+## Dotfiles Packages
 
-Packages allow us to organize set of preferences into a single unit.`dotfiles` only requies a small amount of info about how to act on a package.
+Packages organize a set of preferences into a distinct unit.`dotfiles` only requires a small amount of info about how to act on a package.
 
 __Example Package Directory__:
 
@@ -89,14 +128,12 @@ pkg-available/foo/
 └── creds.private
 ```
 
-There are 5 main package actions:
+There are several package actions:
 
-1. ~~__init__: perform any upfront work when a package is enabled.~~
 2. __link__: symlink a file(s)
 3. __copy__: copy a file(s)
 4. __source__: source a file*
-4. __run__: run a script
-5. ~~__deinit__: perform any cleanup work when a package is disabled.~~
+4. __run__: run a script (via `dotfiles` cli only)
 
 > * source actions only run in `bash_profile` or when manually sourced via `dotfiles src`.
 
@@ -125,8 +162,8 @@ local -a src=(
 # Link values follow this format
 # "<src>:<dest>"
 #
-# Note: do not include path info in <src>
-# Note: provide an absolute path for <dest>
+# Note: _do not_ include path info in <src>
+# Note: _do_ provide an absolute path for <dest>
 local -a links=(
     "foorc:$HOME/.foorc"
 )
@@ -134,22 +171,17 @@ local -a links=(
 # Copy values follow this format
 # "<src>:<dest>"
 #
-# Note: do not include path info in <src>
-# Note: provide an absolute path for <dest>
+# Note: _do not_ include path info in <src>
+# Note: _do_ provide an absolute path for <dest>
 local -a copy=(
     "foo_config:$HOME/.foo_config"
 )
 ```
 
-~~### Other package scripts:~~
 
-- ~~`init.sh`: Run when a package is enabled.~~
-- ~~`deinit.sh`: Run when a package is disabled.~~
+## Appendix
 
-~~You can put what ever you like in these files, however; `init.sh` is intended for preparing / installing deps and `deinit.sh` is intended to clean up what happened in `init.sh`.~~
-
-
-## Dotfiles Entry Points
+### Dotfiles Entry Points
 
 > These files are located in `/dotfiles/*` and linked to your `$HOME` direcorty when install `dotfiles`.
 
@@ -161,14 +193,19 @@ __dotfilesrc__:
 
 This gets loaded _before everything else_. It's there should you need it.
 
-## Auto-loaded Bin
+### Auto-loaded Bin
 
-For convenience dotfiles will add `dotfiles/bin` to your path so you can also store and version utilities you write. There's no magic here, just make sure anything you want to run in this dir is executeable.
+For convenience dotfiles will add `dotfiles/bin` to your path so you can also store and version utilities you write. There's no magic here, just make sure anything you want to run in this dir is executable.
 
 > After `scripts/dotfiles.sh setup` is run a symlink to `dotfiles` is created so you can reference the `dotfiles` cli globally.
 
-## Private Files
+### Private Files
 
 Any file with a `*.private` extension are ignored by git.
 
 Source actions are applied in order, so put any overrides you might have towards the bottom of the list.
+
+<a name="why-should-i-fork"></a>
+### Why Should I Fork?
+
+You should fork because _that's how you use this repo_. If you're not versioning your own copy you're defeating the purpose. Additionally, the files in `pkg-available` are my personal files. I will most certainly tweak, remove, add, and otherwise modify this repo without any consideration for you. :skull:

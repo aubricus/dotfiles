@@ -45,7 +45,7 @@ Commands:
     link            [Re]Link a file from a package
     run             [Re]Run a file from a package
     path            Get absolute path to package file (see Examples)
-    all             Add all available pacakges
+    all             Add all available packages
     none            Remove all enabled packages
 
 Usage:
