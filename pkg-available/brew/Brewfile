@@ -1,11 +1,10 @@
 # -------------------------------------
 # OSX BREWFILE
 # -------------------------------------
-# https://robots.thoughtbot.com/brewfile-a-gemfile-but-for-homebrew
+# https://github.com/Homebrew/homebrew-bundle
 
-cask_args appdir: '/Applications'
-
-tap 'homebrew/bundle'
+cask_args appdir: "/Applications"
+tap "caskroom/cask"
 
 brew "bash"
 brew "bash-completion"
