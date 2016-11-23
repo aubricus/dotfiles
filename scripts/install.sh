@@ -12,7 +12,7 @@ set -eu -o pipefail
 DOTFILES_DIR="${HOME}/Repos/dotfiles"
 DOTFILES_TARBALL="https://github.com/aubricus/dotfiles/tarball/master"
 DOTFILES_REMOTE="git@github.com:aubricus/dotfiles.git"
-now=$(date + "%Y%m%d")
+now=$(date +'%Y%m%d-%I%M%S')
 
 # Functions
 # =====================================
@@ -47,7 +47,7 @@ init_repository() {
     git clean -fd
 }
 
-backup_file() {
+backup_dotfile() {
     backup_dir="${HOME}/dotfiles_bku"
     log_info "Moving file to $backup_dir/${1}-${now}"
 
@@ -63,7 +63,7 @@ backup_file() {
 if [[ ! -d "${DOTFILES_DIR}" ]]; then
     log_info "Downloading dotfiles..."
     get_dotfiles
-    log_success "Done!"
+    log_info "Done!"
 fi
 
 # Head into the dotfiles dir
@@ -72,15 +72,16 @@ cd $DOTFILES_DIR
 # Load our utils
 source ./lib/functions
 
-log_header "Installing dotfiles..."
 
 # Check for XCode Command Line Tools
 if ! type_exists 'gcc'; then
     log_error "The XCode Command Line Tools must be installed first."
     log_info  "Download them from: https://developer.apple.com/downloads"
-    log_info  "Then run: bash ~/${DOTFILES_DIR}/scripts/install.sh"
+    log_info  "Then run: bash ${DOTFILES_DIR}/scripts/install.sh"
     exit 1
 fi
+
+log_header "Installing dotfiles..."
 
 # Initialize the git repository if it's missing
 if ! is_git_repo; then
@@ -89,9 +90,11 @@ if ! is_git_repo; then
     log_success "Done!"
 fi
 
-
+# Add entries here for any files you want to back up
+# before running this script.
 declare -a backup_dotfiles=(
-    ".bash_profile" ".bashrc" ".dotfilessrc"
+    ".bash_profile" ".bashrc" ".dotfilesrc" "tmux" ".tmux.conf" ".vimrc"
+    ".gemrc" ".gitconfig" ".gitattributes" ".gitignore" "pdbrc.py"
 )
 
 for i in ${!backup_dotfiles[*]}
@@ -99,12 +102,12 @@ do
     dotfile="${backup_dotfiles[$i]}"
     dotfile_path="${HOME}/$dotfile"
 
-    if [[ -f $dotfile_path ]]; then
-        log_warning "Found existing $dotfile"
-        seek_confirmation "Would you like to save a backup of this file?"
+    if [[ -e $dotfile_path ]]; then
+        log_warning "Found: $dotfile"
+        seek_confirmation "Would you like to save a backup?"
 
         if is_confirmed; then
-            backup_file $dotfile_path
+            backup_dotfile $dotfile
         fi
     fi
 done
@@ -113,14 +116,14 @@ log_success "Done!"
 # Do initial setup
 setup $DOTFILES_DIR
 
-# Source bash profile for this session
-source "${HOME}/.bash_profile"
-
 # All done!
 log_success "Install finished!"
 log_info "Run: dotfiles --help to see usage."
 
 # Cleanup
-unset get_dotfiles init_repository backup_file backup_dotfiles
+unset get_dotfiles init_repository backup_dotfile backup_dotfiles
 unset_functions
 
+# This _must_ happen last!
+# Source bash profile for this session
+source "${HOME}/.bash_profile"

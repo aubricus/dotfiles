@@ -158,7 +158,6 @@ setup() {
     do_link "$dotfiles/dotfiles/bash_profile" "${HOME}/.bash_profile"
 
     log_success "Done!"
-    log_warning "Please restart your session!"
 }
 
 # Attempt to add a specified package
