@@ -7,5 +7,7 @@
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew tap/homebrew/bundle
-brew bundle
+# See: https://github.com/Homebrew/homebrew-bundle
+brew tap Homebrew/bundle
+
+brew bundle --file="$(dotfiles path brew Brewfile)"
