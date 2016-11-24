@@ -4,8 +4,12 @@
 # BREW INSTALL
 # -------------------------------------
 
+if test ! $(which brew); then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    echo "Brew already installed..."
+fi
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # See: https://github.com/Homebrew/homebrew-bundle
 brew tap Homebrew/bundle
