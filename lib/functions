@@ -163,8 +163,8 @@ setup() {
 # Attempt to add a specified package
 #
 # Addition is simple:
-# 1. If the package exists in pkg_available
-# 2. It gets symlinked into pkg_enabled
+# 1. If the package exists in pkg_repo
+# 2. It gets symlinked into pkg_installed
 # 3. Link entries in conf.sh => links
 # 4. Copy entries in conf.sh => copy
 #
@@ -179,31 +179,31 @@ add_package() {
 
     local dotfiles="${1}"
     local pkg_name="${2}"
-    local pkg_available_dir="$dotfiles/pkg-available"
-    local pkg_enabled_dir="$dotfiles/pkg-enabled"
-    local pkg_available="$pkg_available_dir/$pkg_name"
-    local pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    local pkg_repo_dir="$dotfiles/dotfiles/repo"
+    local pkg_installed_dir="$dotfiles/dotfiles/installed"
+    local pkg_repo="$pkg_repo_dir/$pkg_name"
+    local pkg_installed="$pkg_installed_dir/$pkg_name"
 
     # Check for invalid package name
-    if [[ ! -d "$pkg_available" ]]; then
+    if [[ ! -d "$pkg_repo" ]]; then
         log_error "Could not find package: $pkg_name"
         exit 1
     fi
 
     # Create symlink
     log_info "Creating symlink... "
-    do_link "$pkg_available" "$pkg_enabled"
+    do_link "$pkg_repo" "$pkg_installed"
 
     # -L, test for symlink
     # -d, test for dir
-    [[ -L "$pkg_enabled" && -d "$pkg_enabled" ]] && log_success "Done!"
+    [[ -L "$pkg_installed" && -d "$pkg_installed" ]] && log_success "Done!"
 
-    local conf="$pkg_enabled/conf.sh"
+    local conf="$pkg_installed/conf.sh"
 
     # Fail if conf.sh is not found
     if [[ ! -e "$conf" ]]; then
         log_error "Could not find configuration for: $pkg_name"
-        rm -rf "$pkg_enabled"
+        rm -rf "$pkg_installed"
         exit 1
     fi
 
@@ -222,7 +222,7 @@ add_package() {
         # See: http://stackoverflow.com/a/918931
         IFS=':' read -a arr <<< "$src_dest"
 
-        local src="$pkg_enabled/${arr[0]}"
+        local src="$pkg_installed/${arr[0]}"
         local dest="${arr[1]}"
 
         # -r, test for file readable
@@ -253,7 +253,7 @@ add_package() {
         # See: http://stackoverflow.com/a/918931
         IFS=':' read -a arr <<< "$src_dest"
 
-        local src="$pkg_enabled/${arr[0]}"
+        local src="$pkg_installed/${arr[0]}"
         local dest="${arr[1]}"
 
         # -r, test for file readable
@@ -275,7 +275,7 @@ add_package() {
 # Attempt to remove a specified package
 #
 # Removal is simple:
-# 1. If the package exists in pkg_enabled
+# 1. If the package exists in pkg_installed
 # 2. Remove link entries in conf.sh => links
 # 3. Remove copy entries in conf.sh => copy
 # 4. Remove symlink
@@ -291,23 +291,23 @@ remove_package() {
 
     local pkg_name="${2}"
     local dotfiles="${1}"
-    local pkg_available_dir="$dotfiles/pkg-available"
-    local pkg_enabled_dir="$dotfiles/pkg-enabled"
-    local pkg_available="$pkg_available_dir/$pkg_name"
-    local pkg_enabled="$pkg_enabled_dir/$pkg_name"
+    local pkg_repo_dir="$dotfiles/dotfiles/repo"
+    local pkg_installed_dir="$dotfiles/dotfiles/installed"
+    local pkg_repo="$pkg_repo_dir/$pkg_name"
+    local pkg_installed="$pkg_installed_dir/$pkg_name"
 
     # Check for invalid package name
-    if [[ ! -d "$pkg_enabled" ]]; then
+    if [[ ! -d "$pkg_installed" ]]; then
         log_error "Could not find package: $pkg_name"
         exit 1
     fi
 
-    local conf="$pkg_enabled/conf.sh"
+    local conf="$pkg_installed/conf.sh"
 
     # Fail if conf.sh is not found
     if [[ ! -e "$conf" ]]; then
         log_error "Could not find configuration for: $pkg_name"
-        rm -rf "$pkg_enabled"
+        rm -rf "$pkg_installed"
         exit 1
     fi
 
@@ -373,10 +373,10 @@ remove_package() {
 
     # Remove symlink
     log_info "Removing symlink... "
-    rm -rf "$pkg_enabled"
+    rm -rf "$pkg_installed"
 
     # -L, test for symlink
-    [[ ! -L "$pkg_enabled" ]] && log_success "Done!"
+    [[ ! -L "$pkg_installed" ]] && log_success "Done!"
 }
 
 # Add all available packages
@@ -392,7 +392,7 @@ add_all() {
     log_header "Installing all available packages..."
 
     local dotfiles="${1}"
-    local dotfiles_pkg="$dotfiles/pkg-available"
+    local dotfiles_pkg="$dotfiles/dotfiles/repo"
 
     # Must capture result here, piping this into
     # a while loop puts source calls into a subshell
@@ -423,7 +423,7 @@ remove_all() {
     log_header "Uninstalling all enabled packages..."
 
     local dotfiles="${1}"
-    local dotfiles_pkg="$dotfiles/pkg-enabled"
+    local dotfiles_pkg="$dotfiles/dotfiles/installed"
 
     # Must capture result here, piping this into
     # a while loop puts source calls into a subshell
@@ -453,9 +453,9 @@ copy_entry() {
     dotfiles="${1}"
     pkg_name="${2}"
     pkg_entry="${3}"
-    pkg_enabled_dir="$dotfiles/pkg-enabled"
-    pkg_enabled="$pkg_enabled_dir/$pkg_name"
-    conf="$pkg_enabled/conf.sh"
+    pkg_installed_dir="$dotfiles/dotfiles/installed"
+    pkg_installed="$pkg_installed_dir/$pkg_name"
+    conf="$pkg_installed/conf.sh"
 
     # Fail if conf.sh is not found
     if [[ ! -e "$conf" ]]; then
@@ -474,14 +474,14 @@ copy_entry() {
         # See: http://stackoverflow.com/a/918931
         IFS=':' read -a arr <<< "$src_dest"
 
-        local src="$pkg_enabled/${arr[0]}"
+        local src="$pkg_installed/${arr[0]}"
         local dest="${arr[1]}"
 
         # Clean up
         IFS=_IFS
         unset arr
 
-        if [[ -e "$src" && "$src" == "$pkg_enabled/$pkg_entry" ]]; then
+        if [[ -e "$src" && "$src" == "$pkg_installed/$pkg_entry" ]]; then
             do_copy "$src" "$dest"
             log_success "Copied $src -> $dest"
             break;
@@ -503,9 +503,9 @@ link_entry() {
     dotfiles="${1}"
     pkg_name="${2}"
     pkg_entry="${3}"
-    pkg_enabled_dir="$dotfiles/pkg-enabled"
-    pkg_enabled="$pkg_enabled_dir/$pkg_name"
-    conf="$pkg_enabled/conf.sh"
+    pkg_installed_dir="$dotfiles/dotfiles/installed"
+    pkg_installed="$pkg_installed_dir/$pkg_name"
+    conf="$pkg_installed/conf.sh"
 
     # Fail if conf.sh is not found
     if [[ ! -e "$conf" ]]; then
@@ -524,14 +524,14 @@ link_entry() {
         # See: http://stackoverflow.com/a/918931
         IFS=':' read -a arr <<< "$src_dest"
 
-        local src="$pkg_enabled/${arr[0]}"
+        local src="$pkg_installed/${arr[0]}"
         local dest="${arr[1]}"
 
         # Clean up
         IFS=_IFS
         unset arr
 
-        if [[ -e "$src" && "$src" == "$pkg_enabled/$pkg_entry" ]]; then
+        if [[ -e "$src" && "$src" == "$pkg_installed/$pkg_entry" ]]; then
             do_link "$src" "$dest"
             log_success "Linked $src -> $dest"
             break;
@@ -554,13 +554,14 @@ get_path() {
     dotfiles="${1}"
     pkg_name="${2}"
     pkg_entry="${3}"
-    pkg_enabled_dir="$dotfiles/pkg-enabled"
-    pkg_enabled="$pkg_enabled_dir/$pkg_name"
-    abs_path="$pkg_enabled/$pkg_entry"
+    pkg_installed_dir="$dotfiles/dotfiles/installed"
+    pkg_installed="$pkg_installed_dir/$pkg_name"
+    abs_path="$pkg_installed/$pkg_entry"
 
-    # Fail if conf.sh is not found
     if [[ -e "$abs_path" ]]; then
         printf "$abs_path"
+    else
+        printf "Error could not find file: $abs_path"
     fi
 }
 
@@ -578,9 +579,9 @@ run_entry() {
     dotfiles="${1}"
     pkg_name="${2}"
     pkg_entry="${3}"
-    pkg_enabled_dir="$dotfiles/pkg-enabled"
-    pkg_enabled="$pkg_enabled_dir/$pkg_name"
-    to_run="$pkg_enabled/$pkg_entry"
+    pkg_installed_dir="$dotfiles/dotfiles/installed"
+    pkg_installed="$pkg_installed_dir/$pkg_name"
+    to_run="$pkg_installed/$pkg_entry"
     run_args="${@:4}"
 
     # Fail if conf.sh is not found
@@ -602,7 +603,7 @@ run_entry() {
 # src_all $DOTFILES_DIR
 src_all() {
     local dotfiles="${1}"
-    local dotfiles_pkg="$dotfiles/pkg-enabled"
+    local dotfiles_pkg="$dotfiles/dotfiles/installed"
 
     # Must capture result here, piping this into
     # a while loop puts source calls into a subshell

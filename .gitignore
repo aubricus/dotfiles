@@ -2,5 +2,5 @@
 *.private
 
 # Ignore Symlinks
-pkg-enabled/
+dotfiles/installed/
 bin/dotfiles

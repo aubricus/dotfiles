@@ -62,11 +62,11 @@ bash -c "$(curl -fsSL raw.githubusercontent.com/<gh_username>/dotfiles/master/sc
 
 Lots...and all likely incompatible with your system, hardware, and / or workflow.
 
-> You can take a look at what's here if you like; everything is in `pkg-available/` but I recommend starting from scratch.
+> You can take a look at what's here if you like; everything is in `dotfiles/repo/` but I recommend starting from scratch.
 
 __Want to start from scratch?__
 
-Just [__fork this repo__](#why-should-i-fork) and empty out `pkg-available`. That's it!
+Just [__fork this repo__](#why-should-i-fork) and empty out `dotfiles/repo`. That's it!
 
 ## Features
 
@@ -118,7 +118,7 @@ Packages organize a set of preferences into a distinct unit.`dotfiles` only requ
 __Example Package Directory__:
 
 ```text
-pkg-available/foo/
+dotfiles/repo/foo/
 ├── conf.sh (required)
 ├── foo.sh
 ├── aliases
@@ -208,4 +208,4 @@ Source actions are applied in order, so put any overrides you might have towards
 <a name="why-should-i-fork"></a>
 ### Why Should I Fork?
 
-You should fork because _that's how you use this repo_. If you're not versioning your own copy you're defeating the purpose. Additionally, the files in `pkg-available` are my personal files. I will most certainly tweak, remove, add, and otherwise modify this repo without any consideration for you. :skull:
+You should fork because _that's how you use this repo_. If you're not versioning your own copy you're defeating the purpose. Additionally, the files in `dotfiles/repo` are my personal files. I will most certainly tweak, remove, add, and otherwise modify this repo without any consideration for you. :skull:
