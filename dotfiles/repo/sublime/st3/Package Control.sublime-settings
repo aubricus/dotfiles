@@ -1,0 +1,13 @@
+{
+    "bootstrapped": true,
+    "installed_packages":
+    [
+        "DocBlockr",
+        "Emmet",
+        "GitGutter",
+        "Materialize",
+        "Package Control",
+        "Python Flake8 Lint",
+        "SCSS",
+    ]
+}
