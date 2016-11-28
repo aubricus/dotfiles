@@ -550,7 +550,7 @@ link_entry() {
 #
 # Example:
 # get_path $dotfiles $pkg_name $pkg_entry
-get_path() {
+get_pkg_path() {
     dotfiles="${1}"
     pkg_name="${2}"
     pkg_entry="${3}"
