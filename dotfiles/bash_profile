@@ -18,7 +18,7 @@ export DOTFILES_DIR="${HOME}/Repos/dotfiles"
 [ -e "$DOTFILES_DIR/lib/functions" ] && source "$DOTFILES_DIR/lib/functions";
 
 # Put dotfile/bin in the path
-export PATH="$DOTFILES_DIR/bin":$PATH
+export PATH="$DOTFILES_DIR/dotfiles/bin":$PATH
 
 # Start session
 log_info "Hello $USER! Configuring session..."

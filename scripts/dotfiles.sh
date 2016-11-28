@@ -146,7 +146,7 @@ if [[ "$1" == "path" ]]; then
         exit 1
     fi
 
-    get_path $DOTFILES_DIR "${2}" "${3}"
+    get_pkg_path $DOTFILES_DIR "${2}" "${3}"
     exit
 fi
 
