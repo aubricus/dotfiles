@@ -9,6 +9,7 @@
         "Materialize",
         "Package Control",
         "Python Flake8 Lint",
+        "Python PEP8 Autoformat",
         "SCSS",
         "SideBarEnhancements",
         "SSH Config"

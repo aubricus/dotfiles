@@ -1,0 +1,6 @@
+{
+    "autoformat_on_save": true,
+    "ignore": ["D101", "D103", "D400", "D100", "D102", "D105", "E221", "E402",
+        "N806", "F403", "F401"],
+    "max-line-length": 79
+}
