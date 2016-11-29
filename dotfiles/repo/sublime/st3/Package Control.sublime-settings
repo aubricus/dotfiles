@@ -5,11 +5,12 @@
         "DocBlockr",
         "Emmet",
         "GitGutter",
+        "MarkdownEditing",
         "Materialize",
         "Package Control",
         "Python Flake8 Lint",
         "SCSS",
-        "SideBarEnhancements"
+        "SideBarEnhancements",
         "SSH Config"
     ]
 }
