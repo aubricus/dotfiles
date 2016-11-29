@@ -114,4 +114,4 @@ run_help
 
 # Cleanup
 # =====================================
-unset run_help which_config link_config init
+unset run_help which_config link_config setup
