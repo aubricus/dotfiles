@@ -15,6 +15,10 @@ alias ...="cd ../.."
 alias ~="cd ~"
 alias -- -="cd -"
 
+alias repos="cd ~/Repos"
+alias work="cd ~/Workspace"
+alias prefs="cd ~/Repos/dotfiles"
+
 # List dir aliases
 # =====================================
 # ref: http://ss64.com/osx/ls.html
