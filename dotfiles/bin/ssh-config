@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# SSH CONFIG
+# -------------------------------------
+
+# See: https://sipb.mit.edu/doc/safe-shell/
+set -eu -o pipefail
+
+# Documentation
+# =====================================
+
+run_help() {
+cat <<EOT
+ssh-config (v0.0.1) - Aubrey Taylor - http://github.com/aubricus/dotfiles
+
+Dynamically link ~/.ssh config.
+
+Usage:
+    ssh-config                  Prints currently linked config
+    ssh-config <config-name>    Links a config
+
+Options:
+    -h, --help      Print this help message
+
+Notes:
+- Tested on GNU bash, version 4.4.5(1)-release (x86_64-apple-darwin15.6.0)
+- Place configs into ~/.ssh/configs
+- <config-name> must match file name
+
+EOT
+}
+
+# Functions
+# =====================================
+
+which_config() {
+    # See: http://unix.stackexchange.com/a/138658/202851
+    local path=$(stat -f %Y "${HOME}/.ssh/config")
+
+    # See: http://stackoverflow.com/a/17511700/1082663
+    printf $path | sed -n 's/.*\(configs\/.*$\)/\1/p'
+}
+
+# Dotfiles initial setup script
+#
+# # Arguments:
+# $1: $config_name The config name
+#
+# Example:
+# setup $dotfiles
+link_config() {
+    local root_dir="${HOME}/.ssh"
+    local link_to="${root_dir}/configs/${1}"
+    local config="${root_dir}/config"
+
+    if [[ -e "$link_to" ]]; then
+        echo "Linking config: $config > configs/${1}"
+
+        # ensure symlink is removed,
+        # have had weird luck with -f in ln on osx
+        rm -rf "$config"
+        ln -s "$link_to" "$config"
+
+        echo "Success!"
+    else
+        echo "Error: Could not find config: ${link_to}"
+    fi
+
+
+}
+
+# Argv Handling
+# =====================================
+
+# $#, number of args
+if [[ $# == 0 ]]; then
+    which_config
+    exit
+fi
+
+if [[ "$1" =~ (--help|-h) ]]; then
+    run_help
+    exit
+fi
+
+# $#, number of args
+if [[ $# == 1 ]]; then
+    link_config "${1}"
+    exit
+fi
+
+# Nothing matched, show help
+# Probably unreachable...
+run_help
+
+
+# Cleanup
+# =====================================
+unset run_help which_config link_config
