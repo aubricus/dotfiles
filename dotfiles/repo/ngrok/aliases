@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
 
 # -------------------------------------
-# NGROK DOTFILES CONF
+# NGROK ALIASES
 # -------------------------------------
 
-
-local -a src=(
-    "aliases"
-)
-
-local -a links=()
-
-local -a copy=()
+alias ngrok-serve="ngrok http 80"
