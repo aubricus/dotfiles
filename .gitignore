@@ -3,4 +3,4 @@
 
 # Ignore Symlinks
 dotfiles/installed/
-bin/dotfiles
+dotfiles/bin/dotfiles
