@@ -18,6 +18,7 @@ alias -- -="cd -"
 alias repos="cd ~/Repos"
 alias work="cd ~/Workspace"
 alias prefs="cd ~/Repos/dotfiles"
+function edit-dotfiles { cd ~/Repos/dotfiles && subl .; }
 
 # List dir aliases
 # =====================================
