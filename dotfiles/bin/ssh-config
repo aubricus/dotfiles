@@ -16,6 +16,9 @@ ssh-config (v0.0.1) - Aubrey Taylor - http://github.com/aubricus/dotfiles
 
 Dynamically link ~/.ssh config.
 
+Commands:
+    ssh-config setup            Run basic setup (required before first use!)
+
 Usage:
     ssh-config                  Prints currently linked config
     ssh-config <config-name>    Links a config
@@ -66,8 +69,16 @@ link_config() {
     else
         echo "Error: Could not find config: ${link_to}"
     fi
+}
 
+setup() {
+    echo "Initializing ssh-config..."
+    local configs_dir="${HOME}/.ssh/configs"
 
+    mkdir -p "$configs_dir"
+    touch "$configs_dir/default"
+
+    link_config "default"
 }
 
 # Argv Handling
@@ -84,11 +95,17 @@ if [[ "$1" =~ (--help|-h) ]]; then
     exit
 fi
 
+if [[ "$1" == "setup" ]]; then
+    setup
+    exit
+fi
+
 # $#, number of args
 if [[ $# == 1 ]]; then
     link_config "${1}"
     exit
 fi
+
 
 # Nothing matched, show help
 # Probably unreachable...
@@ -97,4 +114,4 @@ run_help
 
 # Cleanup
 # =====================================
-unset run_help which_config link_config
+unset run_help which_config link_config init
