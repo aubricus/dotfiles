@@ -151,7 +151,7 @@ setup() {
 
     # Symlink dotfiles.sh to /bin/dotfiles
     # so dotfiles is available globally after setup.
-    do_link "$dotfiles/scripts/dotfiles.sh" "$dotfiles/bin/dotfiles"
+    do_link "$dotfiles/scripts/dotfiles.sh" "$dotfiles/dotfiles/bin/dotfiles"
 
     # Copy entry points into $HOME
     do_link "$dotfiles/dotfiles/dotfilesrc" "${HOME}/.dotfilesrc"
