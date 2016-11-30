@@ -4,3 +4,6 @@
 # Ignore Symlinks
 dotfiles/installed/
 dotfiles/bin/dotfiles
+
+# Unignore to keep dir
+!dotfiles/installed/.gitkeep
