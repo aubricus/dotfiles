@@ -11,6 +11,8 @@
 # UI / UX
 # ======================================
 
+echo "Setting UI / UX Defaults..."
+
 # Disable Menu bar transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
@@ -40,6 +42,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Dock
 # ======================================
+
+echo "Setting Dock Defaults..."
 
 # Enable the 2D Dock
 defaults write com.apple.dock no-glass -bool true
@@ -77,6 +81,8 @@ defaults write com.apple.dock autohide-time-modifier -float 0
 # Finder
 # ======================================
 
+echo "Setting Finder Defaults..."
+
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -102,7 +108,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-# Set visibility for icons for 
+# Set visibility for icons for
 # hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
@@ -111,6 +117,8 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Panels
 # ======================================
+
+echo "Setting Panels Defaults..."
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -123,6 +131,8 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Screen
 # ======================================
+
+echo "Setting Screen Defaults..."
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -172,6 +182,8 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # Disks
 # ======================================
 
+echo "Setting Disks Defaults..."
+
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
@@ -184,22 +196,26 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 # SSD Tweaks
 # ======================================
 
+echo "Setting SSD Defaults..."
+
 # Disable hibernation (speeds up entering sleep mode)
-sudo pmset -a hibernatemode 0
+# sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
+# sudo rm /private/var/vm/sleepimage
 
 # Create a zero-byte file instead
 # and make sure it can’t be rewritten
-sudo touch /private/var/vm/sleepimage
-sudo chflags uchg /private/var/vm/sleepimage
+# sudo touch /private/var/vm/sleepimage
+# sudo chflags uchg /private/var/vm/sleepimage
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
-sudo pmset -a sms 0
+# sudo pmset -a sms 0
 
-# Peripherals 
+# Peripherals
 # ======================================
+
+echo "Setting Peripherals Defaults..."
 
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -216,6 +232,8 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 # System
 # ======================================
 
+echo "Setting System Defaults..."
+
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
@@ -231,8 +249,10 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Safari & WebKit                                                             #
+# Safari & WebKit
 # ======================================
+
+echo "Setting Safari & Webkit Defaults..."
 
 # Privacy: don’t send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
@@ -300,6 +320,8 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 # Activity Monitor
 # ======================================
 
+echo "Setting Activity Monitor Defaults..."
+
 # Show the main window when launching Activity Monitor
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
@@ -316,6 +338,10 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 # Restart apps to apply settings
 # ======================================
 
+echo "Restarting Affected Services..."
+
 for app in "Activity Monitor" "Dashboard" "Dock" "Finder" "SystemUIServer" "Terminal"; do
     killall "${app}" > /dev/null 2>&1
 done
+
+echo "Done!"

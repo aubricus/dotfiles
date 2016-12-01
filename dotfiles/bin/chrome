@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# -------------------------------------
+# CHROME
+# -------------------------------------
+
+# See: https://sipb.mit.edu/doc/safe-shell/
+set -eu -o pipefail
+
+# Documentation
+# =====================================
+
+run_help() {
+cat <<EOT
+chrome (v0.0.1) - Aubrey Taylor - http://github.com/aubricus/dotfiles
+
+Open a file in Chrome
+
+Usage: chrome <file_name>
+
+Options:
+    -h, --help      Print this help message
+EOT
+}
+
+
+# Argv Handling
+# =====================================
+
+# $#, number of args
+if [[ $# == 1 ]]; then
+    open -a Google\ Chrome "$1"
+    exit
+fi
+
+run_help
+
+unset run_help
