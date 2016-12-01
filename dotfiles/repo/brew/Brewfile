@@ -21,6 +21,7 @@ brew "tree"
 brew "wget"
 brew "vim"
 brew "jq"
+brew "node"
 
 cask "1password"
 cask "docker"
