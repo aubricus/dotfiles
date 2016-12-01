@@ -8,6 +8,10 @@
     # Checkout shorcut
     co = checkout
 
+    # Note this requires some custom config
+    # See: https://gist.github.com/piscisaureus/3342247
+    copr = "!f() { git checkout upstream/pr/$1 && git checkout -b pr/$1; }; f"
+
     # List remotes
     remotes = remote -v
 
