@@ -4,32 +4,80 @@
 # VENVRC
 # -------------------------------------
 
+# Env Setup
+# =====================================
 
 export WORKON_HOME="${HOME}/.virtualenv"
 export PIP_VIRTUALENV_BASE="$WORKON_HOME"
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 
-# Try loading venvwrappers from possible install locations
+# Functions
+# =====================================
 
-venvwrappers[0]="/usr/local/share/python/virtualenvwrapper.sh"
-venvwrappers[1]="$HOME/.virtualenv/default/bin/virtualenvwrapper.sh"
-venvwrappers[2]="/usr/local/bin/virtualenvwrapper.sh"
-
-for venvwrapper in "${venvwrappers[@]}"
-do
-    if [ -f $venvwrapper ]; then
-        source $venvwrapper
+type_exists() {
+    if [ $(type -P $1) ]; then
+      return 0
     fi
-done
+    return 1
+}
 
-# Load and / or create default virtual env
+function load_venv_wrapper() {
+    local -a wrappers=(
+        "/usr/local/share/python/virtualenvwrapper.sh"
+        "${HOME}/.virtualenv/default/bin/virtualenvwrapper.sh"
+        "/usr/local/bin/virtualenvwrapper.sh"
+    )
 
-default_env="${WORKON_HOME}/py2"
+    found_wrapper=false
 
-if [ -d "$default_env" ]; then
-    . "$default_env/bin/activate"
-else
-    virtualenv $default_env
-    . $default_env/bin/activate
+    # Find the first file and load it
+    for wrapper in "${wrappers[@]}"
+    do
+        if [[ -f $wrapper ]]; then
+            source $wrapper
+            found_wrapper=true
+            break
+        fi
+    done
+
+    if [[ "$found_wrapper" = false ]]; then
+        echo "ERROR: Could not find a virtualenvwrapper.sh"
+        exit 1
+    fi
+}
+
+function activate_default_env() {
+    env_name="${1}"
+    python_install="${2}"
+
+    if ! type_exists "$python_install"; then
+        echo "ERROR: Could not find pythong install: $python_install, exiting..."
+        exit 1
+    fi
+
+    # Create env if it doesn't exist
+
+    if [[ ! -d "$env_name" ]]; then
+        echo "Creating missing env: $env_name"
+        virtualenv -p $python_install "$env_name"
+    fi
+
+    source "$env_name/bin/activate"
+}
+
+# Run Commands
+# =====================================
+
+if ! type_exists "virtualenv"; then
+    echo "ERROR: Could not find virtualenv install, exiting..." 1>&2
+    exit 1
 fi
+
+load_venv_wrapper
+activate_default_env "py3" python3
+
+# Cleanup
+# =====================================
+
+unset type_exists load_venv_wrapper activate_default_env

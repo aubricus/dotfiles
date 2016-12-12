@@ -8,3 +8,5 @@
 - Refactor dotfiles run, or create a new cli util, dotfiles-cmd (or something) to run package commands in an attempt to automatically inject dotfiles functions into scripts so they don't have to reference the dotfiles cli directly (and possibly to  set other useful defaults)
 
 - when does this become something I should just write in python? :D
+
+- bash_profile, if sourced file returns an error exit, but with error message and confirmation (so session just doesn't exit mysteriously).
