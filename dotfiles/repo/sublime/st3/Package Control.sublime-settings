@@ -2,6 +2,8 @@
     "bootstrapped": true,
     "installed_packages":
     [
+        "Bootstrap 3 Snippets",
+        "Djaneiro",
         "DocBlockr",
         "Emmet",
         "GitGutter",
@@ -12,6 +14,7 @@
         "Python PEP8 Autoformat",
         "SCSS",
         "SideBarEnhancements",
-        "SSH Config"
+        "SSH Config",
+        "TypeScript"
     ]
 }
