@@ -83,6 +83,8 @@
     # Displays committers in descending order of number of commits
     who = shortlog --numbered --summary --email --no-merges
 
+    tags = tag -l
+
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
     ui = auto
