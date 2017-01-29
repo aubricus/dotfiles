@@ -49,21 +49,22 @@ function load_venv_wrapper() {
 
 function activate_default_env() {
     env_name="${1}"
+    env_path="$WORKON_HOME/$env_name"
     python_install="${2}"
 
     if ! type_exists "$python_install"; then
-        echo "ERROR: Could not find pythong install: $python_install, exiting..."
+        echo "ERROR: Could not find python install: $python_install, exiting..."
         exit 1
     fi
 
     # Create env if it doesn't exist
 
-    if [[ ! -d "$env_name" ]]; then
+    if [[ ! -d "$env_path" ]]; then
         echo "Creating missing env: $env_name"
-        virtualenv -p $python_install "$env_name"
+        mkvirtualenv -p $python_install "$env_name"
+    else
+        source "$env_path/bin/activate"
     fi
-
-    source "$env_name/bin/activate"
 }
 
 # Run Commands
