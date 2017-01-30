@@ -22,6 +22,7 @@ brew "wget"
 brew "vim"
 brew "jq"
 brew "node"
+brew "irssi"
 
 cask "1password"
 cask "docker"
