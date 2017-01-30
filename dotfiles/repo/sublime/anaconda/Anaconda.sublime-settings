@@ -1,0 +1,20 @@
+{
+    "pep257": true,
+    "auto_formatting": false,
+    "autoformat_ignore":
+    [
+        "E309","D101", "D103", "D400", "D100", "D102", "D105", "E221", "E402",
+        "N806", "F403", "F401"
+    ],
+    "pep8_max_line_length": 119,
+    "pep8_ignore":
+    [
+        "E309", "D101", "D103", "D400", "D100", "D102", "D105", "E221", "E402",
+        "N806", "F403", "F401"
+    ],
+    "pep257_ignore":
+    [
+        "D100", "D102", "D203", "D209"
+    ],
+     "anaconda_linter_mark_style": "outline",
+}
