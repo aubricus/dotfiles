@@ -23,6 +23,7 @@ brew "vim"
 brew "jq"
 brew "node"
 brew "irssi"
+brew "heroku"
 
 cask "1password"
 cask "docker"
