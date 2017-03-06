@@ -2,7 +2,6 @@
 # ALWAYS IGNORE
 # -------------------------------------
 
-**/migrations/*
 *.mo
 node_modules/
 .sass-cache/
