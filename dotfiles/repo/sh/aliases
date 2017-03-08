@@ -35,6 +35,12 @@ alias la="ls -AGFoh"
 # List all except . and ..., color, mark file types, long form no use group, order by last modified, file size
 alias lat="ls -AGFoth"
 
+# Dev aliases
+# =====================================
+
+alias pcat=pygmentize -O style=monokai -f console256 -g
+function pless { pcat $1 | less -r; }
+
 # Misc alises
 # =====================================
 
