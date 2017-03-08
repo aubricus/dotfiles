@@ -38,7 +38,7 @@ alias lat="ls -AGFoth"
 # Dev aliases
 # =====================================
 
-alias pcat=pygmentize -O style=monokai -f console256 -g
+alias pcat="pygmentize -O style=monokai -f console256 -g"
 function pless { pcat $1 | less -r; }
 
 # Misc alises
