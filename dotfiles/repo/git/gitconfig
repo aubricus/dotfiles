@@ -55,7 +55,7 @@
     resolve = mergetool
 
     # stash shortcuts
-    pop = !git stash pop
+    unstash = !git stash pop
 
     # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo
     # `git gc`: cleanup unnecessary files and optimize the local repository
@@ -114,6 +114,7 @@
     helper = osxkeychain
 
 [diff]
+    # Default settings, I usually install Kaleidoscope which will update this file/entry
     tool = mvimdiff
 
 [difftool]
