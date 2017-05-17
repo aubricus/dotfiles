@@ -24,6 +24,20 @@
     redo = commit -a --amend --no-edit
     rewrite = commit --amend
 
+    # Commit with scope / message shortcuts
+    # Remember to quote $2 if it contains spaces
+    #
+    # Usage:
+    # git <alias> <scope> "<Commit Message>"
+    #
+    # Example:
+    # git chore docs "Update README.md"
+    chore = "!f() { git commit -m \"chore($1): $2\";  }; f"
+    fix = "!f() { git commit -m \"fix($1): $2\";  }; f"
+    hotfix = "!f() { git commit -m \"hotfix($1): $2\";  }; f"
+    refactor = "!f() { git commit -m \"refactor($1): $2\";  }; f"
+    feature = "!f() { git commit -m \"feature($1): $2\";  }; f"
+
     # Push shortcuts
     # $() returns current branch name
     push-topic = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
@@ -33,8 +47,9 @@
     rbo = "!f() { git rebase origin/$1; }; f"
     rbu = "!f() { git rebase upstream/$1; }; f"
 
-    # Interactively add files
-    pick = add -i
+    # Interactive
+    addi = add -i
+    rbi = "!f() { git rebase -i $1^; }; f"
 
     # Mergetool shortcut
     resolve = mergetool
