@@ -47,6 +47,7 @@ Commands:
     path            Get absolute path to package file (see Examples)
     all             Add all available packages
     none            Remove all enabled packages
+    edit            Open dotfiles in sublime
 
 Usage:
     dotfiles (-h | --help)
@@ -160,6 +161,11 @@ if [[ "$1" == "run" ]]; then
 
     run_entry $DOTFILES_DIR "${2}" "${3}" "${@:4}"
     exit
+fi
+
+echo $1
+if [[ "$1" == "edit" ]]; then
+    edit_dotfiles $DOTFILES_DIR
 fi
 
 # Nothing matched, show help

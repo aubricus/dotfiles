@@ -39,7 +39,6 @@ alias lat="ls -AGFoth"
 
 alias pcat="pygmentize -O style=monokai -f console256 -g"
 function pless { pcat $1 | less -r; }
-function edit-dotfiles { cd ~/Repos/dotfiles && subl .; }
 alias cookiecutter-django="cookiecutter https://github.com/blitzagency/cookiecutter-django"
 
 # Misc alises

@@ -8,7 +8,7 @@ declare -a functions_h=(
     "seek_confirmation" "is_confirmed" "is_git_repo" "type_exists" "do_link"
     "do_copy" "log_header" "log_error" "log_success" "log_info" "log_warning"
     "setup" "add_package" "remove_package" "add_all" "remove_all" "link_entry"
-    "run_entry" "get_path" "src_all unset_functions"
+    "run_entry" "get_path" "src_all" "unset_functions" "edit_dotfiles"
 )
 
 unset_functions() {
@@ -634,4 +634,19 @@ src_all() {
         done
     done
     log_success "Done!"
+}
+
+
+# Open dotfiles in SublimeText
+#
+# Arguments:
+# $1: $dotfiles The dotfiles directory
+#
+# Requires that `subl` is setup
+edit_dotfiles() {
+    if ! type_exists "subl"; then
+        log_error "Type subl could not be found."
+    else
+        cd $1 && subl .
+    fi
 }
