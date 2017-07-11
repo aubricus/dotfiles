@@ -56,7 +56,8 @@
         ".hg",
         "CVS",
         ".sass-cache",
-        ".git"
+        ".git",
+        "node_modules",
     ],
     "font_size": 11.0,
     "ignored_packages":

@@ -2,6 +2,7 @@
     "bootstrapped": true,
     "installed_packages":
     [
+        "Anaconda",
         "Bootstrap 3 Snippets",
         "Djaneiro",
         "DocBlockr",
@@ -15,6 +16,7 @@
         "SCSS",
         "SideBarEnhancements",
         "SSH Config",
+        "Themes Menu Switcher",
         "TypeScript"
     ]
 }
