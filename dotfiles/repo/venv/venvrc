@@ -9,6 +9,7 @@
 
 export WORKON_HOME="${HOME}/.virtualenv"
 export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 

@@ -8,9 +8,11 @@
 export PIP_REQUIRE_VIRTUALENV=false
 export PIP_RESPECT_VIRTUALENV=false
 
-pip install -U pip
-pip install -U virtualenv
-pip install -U virtualenvwrapper
+pip3 install -U pip
+pip3 install -U virtualenv
+# Had to add this to work around ssl error when installing virtualenv
+pip3 install -U pbr
+pip3 install -U virtualenvwrapper
 
 # Cleanup
 export PIP_REQUIRE_VIRTUALENV=true
