@@ -1,0 +1,173 @@
+#! /usr/bin/env bash
+
+# -------------------------------------
+# WALLPAPER SWAP
+# -------------------------------------
+
+# -e, exit on error
+# -u, unset variable is an error
+# -o pipefail, fail pipe chain if error
+set -eu -o pipefail
+
+# Docs
+# =====================================
+
+run_help() {
+cat <<EOT
+Wallpaper
+
+Setup:
+
+Open this file in a text editor and update the "Vars" section.
+
+Hint: Use wallpaper debug TRUE to get the path to the currently
+  linked wallpaper for FROM_IMAGE.
+
+Commands:
+    swap            Swap the current desktop to a custom one
+    revert          Revert previous swap
+    debug           Show location of wallpaper on desktop
+    reset_dock      Reset the dock
+
+Usage:
+    wallpaper       (-h | --help)
+    wallpaper       <command>
+    wallpaper       debug [FALSE|TRUE]
+
+Options:
+    -h, --help      Print this help message
+EOT
+}
+
+
+# Vars
+# =====================================
+# Edit these vars to match your system
+
+# Must match user name shown in Finder
+USER_NAME="aubrey.taylor"
+
+# Must match a path for the managed desktop background
+FROM_IMG="/private/var/Desktop Backgrounds/Background-AMP-2018-01(2800x1800).jpeg"
+
+# Must mach a path to a custom image
+TO_IMG="/Users/$USER_NAME/Downloads/AS/_custom.jpg"
+
+
+# Functions
+# =====================================
+
+reset_dock() {
+    killall Dock
+}
+
+ensure_root() {
+    # See: https://stackoverflow.com/a/18216122/1082663
+    if [ "$EUID" -ne 0 ]
+        then echo "[ERROR]: This command requires sudo."
+        exit 1
+    fi
+}
+
+success_msg() {
+    echo "Success!"
+}
+
+debug() {
+    local toggle="${1}"
+
+    if [[ $toggle != "FALSE" ]] && [[ $toggle != "TRUE" ]]; then
+        echo "[ERROR]: ${toggle} is not a valid value."
+        run_help
+        exit 1
+    fi
+
+    defaults write com.apple.dock desktop-picture-show-debug-text -bool "$toggle"
+    killall Dock
+}
+
+swap() {
+    ensure_root
+
+    if [[ -h "$FROM_IMG" ]]; then
+        echo "[ERROR]: ${FROM_IMG} is already symlinked."
+        echo "This usually means it's alredy been swapped."
+        echo "Run wallpaper revert"
+        exit 1
+    fi
+
+    # Backup and delete existing image (revert depends on .bku, do not change)
+    if [[ -e "$FROM_IMG" ]]; then
+        cp "$FROM_IMG" "${FROM_IMG}.bku"
+        rm -rf "$FROM_IMG"
+    else
+        echo "[WARN]: Could not find $FROM_IMG, backup failed."
+    fi
+
+    # Symlink custom image as $FROM_IMG
+    if [[ -e "$TO_IMG" ]]; then
+        ln -s "$TO_IMG" "$FROM_IMG"
+        reset_dock
+    else
+        echo "[ERROR]: ${TO_IMG} does not exist"
+        exit 1
+    fi
+
+}
+
+revert() {
+    ensure_root
+
+    # If existing ref is a symlink remove it
+    if [[ -h "$FROM_IMG" ]]; then
+        echo "[INFO]: Removing symlink"
+        rm -rf "$FROM_IMG"
+    fi
+
+    # If a matching file with .bku exists, rename it
+    if [[ -e "$FROM_IMG.bku" ]]; then
+        echo "[INFO]: Reverting image..."
+        mv "${FROM_IMG}.bku" "$FROM_IMG"
+    else
+        echo "[ERROR]: $FROM_IMG.bku does not exist revert failed."
+        exit 1
+    fi
+
+    reset_dock
+}
+
+# Argv
+# =====================================
+
+# $#, number of args
+if [[ $# == 0 || "$1" =~ (--help|-h) ]]; then
+    run_help
+    exit
+fi
+
+if [[ "$1" == "swap" ]]; then
+    swap
+    success_msg
+    exit
+fi
+
+if [[ "$1" == "revert" ]]; then
+    revert
+    success_msg
+    exit
+fi
+
+if [[ "$1" == "debug" ]]; then
+    debug "${2}"
+    success_msg
+    exit
+fi
+
+if [[ "$1" == "reset_dock" ]]; then
+    reset_dock
+    success_msg
+    exit
+fi
+
+# Nothing matched, show help
+run_help

@@ -1,0 +1,42 @@
+#! /usr/bin/env bash
+
+# -------------------------------------
+# DESKTOP REVERT
+# -------------------------------------
+# Put that desktop back where it came from or so help me!
+#
+# This has a companion script, desktop-swap
+#
+# Notes:
+#   * IMG does not need to change
+#   * Requires sudo privileges
+#
+# Example:
+#
+# ```bash
+#
+# sudo desktop-revert
+#
+# ```
+
+# Do not edit
+IMG="/private/var/Desktop Backgrounds/Background-AMP-2018-01(2800x1800).jpeg"
+
+# If existing ref is a symlink remove it
+if [[ -h "$IMG" ]]; then
+    echo "Removing symlink"
+    rm -rf "$IMG"
+else
+    echo "$IMG is not a symlink..."
+fi
+
+# If a matching file with .bku exists, rename it
+if [[ -e "$IMG.bku" ]]; then
+    echo "Reverting image..."
+    mv "$IMG.bku" "$IMG"
+else
+    echo "$IMG.bku does not exist..."
+fi
+
+# Update current desktop image
+killall Dock

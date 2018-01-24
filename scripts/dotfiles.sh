@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 # -------------------------------------
@@ -163,9 +164,9 @@ if [[ "$1" == "run" ]]; then
     exit
 fi
 
-echo $1
 if [[ "$1" == "edit" ]]; then
     edit_dotfiles $DOTFILES_DIR
+    exit
 fi
 
 # Nothing matched, show help

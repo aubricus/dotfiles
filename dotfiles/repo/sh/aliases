@@ -48,8 +48,8 @@ alias cookiecutter-django="cookiecutter https://github.com/blitzagency/cookiecut
 alias catn="cat -n"
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
+alias ip="curl ipinfo.io/ip"
+alias ipall="curl ipinfo.io/json"
 alias localip="ipconfig getifaddr en0"
 
 # Copy my public key to the pasteboard
@@ -65,3 +65,8 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 # Show/hide hidden files in Finder
 alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Toggle Wallpaper Debug
+
+alias wpdebugon="defaults write com.apple.dock desktop-picture-show-debug-text -bool TRUE;killall Dock"
+alias wpdebugoff="defaults write com.apple.dock desktop-picture-show-debug-text -bool FALSE;killall Dock"

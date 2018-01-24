@@ -1,0 +1,47 @@
+#! /usr/bin/env bash
+
+# -------------------------------------
+# DESKTOP SWAP
+# -------------------------------------
+# Swap the default desktop to something else.
+#
+# This has a companion script, desktop-revert
+#
+# Setup:
+#   * Change USER_NAME to match your user name / user name folder
+#   * Change TO_IMG path below to match a location on your machine
+#
+# Notes:
+#   * There's no need to change FROM_IMG as this is consistent across machines
+#   * Requires sudo privileges
+#
+# Example:
+#
+# ```bash
+#
+# sudo desktop-swap
+#
+# ```
+
+# Edit these!
+USER_NAME=aubrey.taylor
+TO_IMG="/Users/$USER_NAME/Downloads/AS/_custom.jpg"
+FROM_IMG="/private/var/Desktop Backgrounds/Background-AMP-2018-01(2800x1800).jpeg"
+
+
+if [[ -h "$FROM_IMG" ]]; then
+    echo "Image is already symlinked, make sure you run desktop-revert before running this script again."
+    exit 1
+fi
+
+# Backup existing image (desktop-revert depends on .bku, do not change)
+cp "$FROM_IMG" "$FROM_IMG.bku"
+
+# Remove existing image
+rm -rf "$FROM_IMG"
+
+# Symlink custom image as $FROM_IMG
+ln -s "$TO_IMG" "$FROM_IMG"
+
+# Update current desktop image
+killall Dock

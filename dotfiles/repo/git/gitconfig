@@ -102,6 +102,8 @@
 
     clean-orig = "!f() { find . -name \"*.orig\" -delete; }; f"
 
+    copr = "!f() { git checkout refs/pull/upstream/$1; }; f"
+
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
     ui = auto
