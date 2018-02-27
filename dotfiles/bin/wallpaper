@@ -51,7 +51,7 @@ USER_NAME="aubrey.taylor"
 FROM_IMG="/private/var/Desktop Backgrounds/Background-AMP-2018-01(2800x1800).jpeg"
 
 # Must mach a path to a custom image
-TO_IMG="/Users/$USER_NAME/Downloads/AS/_custom.jpg"
+TO_IMG="/Users/$USER_NAME/Downloads/AS/spaceman_custom.png"
 
 
 # Functions
