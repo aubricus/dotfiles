@@ -2,10 +2,12 @@
 # OSX BREWFILE
 # -------------------------------------
 # https://github.com/Homebrew/homebrew-bundle
+# `python` replaced `python3` (it now installs py3/pip3 as the default py exec)
 
 cask_args appdir: "/Applications"
 tap "caskroom/cask"
 tap "caskroom/versions"
+tap "caskroom/fonts"
 
 brew "bash"
 brew "bash-completion"
@@ -15,7 +17,7 @@ brew "jpeg"
 brew "openssl"
 brew "optipng"
 brew "python"
-brew "python3"
+brew "python2"
 brew "reattach-to-user-namespace"
 brew "tmux"
 brew "tree"
@@ -47,3 +49,4 @@ cask "appcleaner"
 cask "postman"
 cask "flux"
 cask "ngrok"
+cask "font-fira-code"
