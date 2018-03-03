@@ -1,0 +1,9 @@
+pylint
+prospector
+mypy
+flake8
+pydocstyle
+pep8
+pylama
+isort
+pytest

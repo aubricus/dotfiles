@@ -9,7 +9,7 @@
 
 export WORKON_HOME="${HOME}/.virtualenv"
 export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+export VIRTUALENVWRAPPER_PYTHON="$(which python)"
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 
@@ -63,6 +63,7 @@ function activate_default_env() {
     if [[ ! -d "$env_path" ]]; then
         echo "Creating missing env: $env_name"
         mkvirtualenv -p $python_install "$env_name"
+        pip install -r $(dotfiles path venv requirements.txt)
     else
         source "$env_path/bin/activate"
     fi
