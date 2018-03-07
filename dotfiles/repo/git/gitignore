@@ -34,3 +34,5 @@ nohup.out
 *.swp
 *.sublime-project
 *.sublime-workspace
+*.pytest_cache
+*.mypy_cache
