@@ -28,6 +28,8 @@ brew "node"
 brew "irssi"
 brew "heroku"
 brew "shellcheck"
+brew "ctags"
+brew "git-flow"
 
 cask "1password"
 cask "docker"
