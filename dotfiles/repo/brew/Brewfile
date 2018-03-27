@@ -30,6 +30,7 @@ brew "heroku"
 brew "shellcheck"
 brew "ctags"
 brew "git-flow"
+brew "pipenv"
 
 cask "1password"
 cask "docker"
