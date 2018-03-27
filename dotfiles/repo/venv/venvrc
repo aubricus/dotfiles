@@ -9,7 +9,7 @@
 
 export WORKON_HOME="${HOME}/.virtualenv"
 export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-export VIRTUALENVWRAPPER_PYTHON="$(which python)"
+export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 
@@ -25,8 +25,6 @@ type_exists() {
 
 function load_venv_wrapper() {
     local -a wrappers=(
-        "/usr/local/share/python/virtualenvwrapper.sh"
-        "${HOME}/.virtualenv/default/bin/virtualenvwrapper.sh"
         "/usr/local/bin/virtualenvwrapper.sh"
     )
 
@@ -78,7 +76,7 @@ if ! type_exists "virtualenv"; then
 fi
 
 load_venv_wrapper
-activate_default_env "py3" python3
+activate_default_env "python" python3
 
 # Cleanup
 # =====================================
