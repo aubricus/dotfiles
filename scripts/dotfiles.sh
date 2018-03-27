@@ -41,7 +41,7 @@ Dotfiles - Aubrey Taylor - http://github.com/aubricus/dotfiles
 Commands:
     setup           Run setup
     add             Add a package
-    remove          Remove a package
+    rm              Remove a package
     copy            [Re]Copy a file from a package
     link            [Re]Link a file from a package
     run             [Re]Run a file from a package
