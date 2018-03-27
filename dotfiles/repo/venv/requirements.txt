@@ -1,9 +1,10 @@
+click
+cookiecutter
 pylint
-prospector
-mypy
+autopep8
 flake8
-pydocstyle
+mypy
 pep8
-pylama
+pydocstyle
+ipython
 isort
-pytest
