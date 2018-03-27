@@ -344,7 +344,7 @@ remove_package() {
     log_success "Done!"
 
     # Remove copy entries
-    log_info "Removing copyied files..."
+    log_info "Removing copied files..."
     for i in ${!copy[*]}
     do
         _IFS=IFS
