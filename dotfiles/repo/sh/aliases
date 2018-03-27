@@ -67,6 +67,8 @@ alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true
 alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # Toggle Wallpaper Debug
-
 alias wpdebugon="defaults write com.apple.dock desktop-picture-show-debug-text -bool TRUE;killall Dock"
 alias wpdebugoff="defaults write com.apple.dock desktop-picture-show-debug-text -bool FALSE;killall Dock"
+
+# Trash
+function trash { mv $1 ~/.Trash; }
