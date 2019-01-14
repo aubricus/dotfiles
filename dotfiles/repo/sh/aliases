@@ -38,7 +38,7 @@ alias lat="ls -AGFoth"
 # =====================================
 
 alias pcat="pygmentize -O style=monokai -f console256 -g"
-function pless { pcat $1 | less -r; }
+function pless { pcat "$1" | less -r; }
 alias cookiecutter-django="cookiecutter https://github.com/blitzagency/cookiecutter-django"
 
 # Misc alises
@@ -53,7 +53,7 @@ alias ipall="curl ipinfo.io/json"
 alias localip="ipconfig getifaddr en0"
 
 # Copy my public key to the pasteboard
-function pubkey { more ~/.ssh/"${1}".pub | pbcopy | printf '=> Public key copied to pasteboard.\n'; }
+function pubkey { more ~/.ssh/"${1}".pub | pbcopy && echo '=> Public key copied to pasteboard.\n'; }
 
 # Flush DNS cache
 alias flushdns="dscacheutil -flushcache"
@@ -71,4 +71,7 @@ alias wpdebugon="defaults write com.apple.dock desktop-picture-show-debug-text -
 alias wpdebugoff="defaults write com.apple.dock desktop-picture-show-debug-text -bool FALSE;killall Dock"
 
 # Trash
-function trash { mv $1 ~/.Trash; }
+function trash { mv "$1" ~/.Trash; }
+
+# Run WP Scan
+function wpscan { docker run -it --rm wpscanteam/wpscan --url "$1" --enumerate u1-1000; }
