@@ -9,7 +9,7 @@ declare -a prepend=(
     # Brew path, must preceed others
     # Path for python@2 is required to link python2/pip2 properly
     "/usr/local/bin"
-    "/usr/local/opt/python@2/bin"
+    "/usr/local/opt/openssl/bin"
 )
 
 declare -a append=(
