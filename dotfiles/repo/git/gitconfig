@@ -5,12 +5,42 @@
 [alias]
     # https://git.wiki.kernel.org/articles/a/l/i/Aliases.html
 
-    # Checkout shorcut
-    co = checkout
+    # List all aliases
+    aliases = config --get-regexp ^alias\
+
+    # Re-base shortcuts
+    rb = "!f() { git rebase ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
+    rbo = "!f() { git rebase origin/$1; }; f"
+    rbu = "!f() { git rebase upstream/$1; }; f"
+    rbi = "!f() { git rebase -i $1^; }; f"
+
+    # Stage files in interactive mode
+    stg = add -i
+
+    # Add untracked, remove deleted, and show status
+    all = !git add -A && git status
+
+    # Custom pretty log
+    ls = log --pretty=nice --date-order
+
+    # Fetch everything
+    fetch-all = fetch --all
+
+    # Push to origin and track using teh same name
+    push-origin = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+
+    # Clean .orig files
+    clean-orig = "!f() { find . -name \"*.orig\" -delete; }; f"
+
+    # Notes:
+    # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo
+    # `git gc`: cleanup unnecessary files and optimize the local repository
+    # `git stash clear`: remove all stashed states
+    flush = !git remote prune origin && git gc && git stash clear
 
     # Note this requires some custom config
     # See: https://gist.github.com/piscisaureus/3342247
-    copr = "!f() { git checkout upstream/pr/$1 && git checkout -b pr/$1; }; f"
+    checkout-prs = "!f() { git checkout upstream/pr/$1 && git checkout -b pr/$1; }; f"
 
     # List remotes
     remotes = remote -v
@@ -18,91 +48,14 @@
     # List branches
     branches = branch -ra -vv
 
-    # Handy commit shortcuts
-    c =  commit
-    save = commit -m "stash"
-    redo = commit -a --amend --no-edit
-    rewrite = commit --amend
-
-    # Commit with scope / message shortcuts
-    # Remember to quote $2 if it contains spaces
-    #
-    # Usage:
-    # git <alias> <scope> "<Commit Message>"
-    #
-    # Example:
-    # git chore docs "Update README.md"
-    chore = "!f() { git commit -m \"chore($1): $2\";  }; f"
-    fix = "!f() { git commit -m \"fix($1): $2\";  }; f"
-    hotfix = "!f() { git commit -m \"hotfix($1): $2\";  }; f"
-    refactor = "!f() { git commit -m \"refactor($1): $2\";  }; f"
-    feature = "!f() { git commit -m \"feature($1): $2\";  }; f"
-
-    # Push shortcuts
-    # $() returns current branch name
-    push-topic = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-    ramrod = push -f
-
-    # Re-base shortcuts
-    rbo = "!f() { git rebase origin/$1; }; f"
-    rbu = "!f() { git rebase upstream/$1; }; f"
-
-    # Interactive
-    addi = add -i
-    rbi = "!f() { git rebase -i $1^; }; f"
-
-    # Mergetool shortcut
-    resolve = mergetool
-
-    # stash shortcuts
-    unstash = !git stash pop
-
-    # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo
-    # `git gc`: cleanup unnecessary files and optimize the local repository
-    # `git clean -df`: remove untracked files and directories from the working tree
-    # `git stash clear`: remove all stashed states
-    trim = !git remote prune origin && git gc
-    cleanup = !git clean -df && git stash clear
-
-    # Add untracked, remove deleted, and show status
-    all = !git add -A && git status
-
-    # Remove all staged files
-    none = !git reset && git status
-
-    # Diff what is staged for the next commit
-    diffc = diff --cached
-
-    # Diff overview
-    diffst = diff --stat
-
-    # Custom graph log (append any tree-ish)
-    lg = log --pretty=nice --date-order --graph
-
-    # Custom graph log for all branches
-    lga = log --pretty=nice --date-order --graph --all
-
-    # Custom pretty log
-    ls = log --pretty=nice --date-order
-
-    # Custom pretty log long format
-    ll = log --pretty=nice --decorate --numstat
-
-    # Short format diffstat log
-    lsd = log --stat --format=oneline --abbrev-commit
-
-    # Diffstat log
-    lld = log --stat
-
-    # Find out who is currently active on the repository
-    # Displays committers in descending order of number of commits
-    who = shortlog --numbered --summary --email --no-merges
-
+    # List tags
     tags = tag -l
 
-    clean-orig = "!f() { find . -name \"*.orig\" -delete; }; f"
+    # Easier status cmd name
+    stat = status
 
-    copr = "!f() { git checkout refs/pull/upstream/$1; }; f"
+    # Update last commit without a prompt
+    commit-update = commit --amend --no-edit
 
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
@@ -117,13 +70,6 @@
 [credential]
     helper = osxkeychain
 
-[diff]
-    # Default settings, I usually install Kaleidoscope which will update this file/entry
-    tool = mvimdiff
-
-[difftool]
-    prompt = false
-
 [pretty]
     # tut: http://gitimmersion.com/lab_10.html
     # ref: http://linux.die.net/man/1/git-log
@@ -132,3 +78,11 @@
 
 [push]
     default = tracking
+
+[diff]
+    # Default settings, I usually install Kaleidoscope which will update this file/entry
+    tool = mvimdiff
+
+[difftool]
+    prompt = false
+
