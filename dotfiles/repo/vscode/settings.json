@@ -1,0 +1,208 @@
+{
+    "window.zoomLevel": 0.25,
+    "editor.cursorStyle": "underline",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
+        "**/.svn": true,
+        "**/*.egg-info": true,
+        "**/*.pyc": true,
+        "**/CVS": true
+    },
+    "workbench.colorTheme": "monokai-chacoral(HC)",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.showIcons": true,
+    "workbench.colorCustomizations": {
+        "[Quiet Light]": {
+            "editor.background": "#ffffff",
+            "sideBar.background": "#ffffff",
+            "sideBar.border": "#d8d8e0",
+            "statusBar.background": "#b5a6c5",
+            "tab.inactiveBackground": "#ffffff",
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[Quiet Light]": {
+            "comments": "#ff8282"
+        },
+        "comments": "#00eeff",
+        "strings": "#ff82d7",
+        "textMateRules": [
+            {
+                "scope": "string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#00eeff" //change to your preference
+                }
+            },
+            {
+                "scope": [
+                    "string.quoted.docstring.multi.python",
+                    "comment",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "string",
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    "entity.other.inherited-class.python",
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "editor.rulers": [
+        99,
+    ],
+    "[git-commit]": {
+        "editor.rulers": [
+            79,
+        ]
+    },
+    "workbench.fontAliasing": "default",
+    "markdown.preview.fontSize": 14,
+    "terminal.integrated.fontSize": 11,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true,
+    },
+    "vscodeWorkspaceSwitcher.paths": [
+        "/Users/aubreytaylor/.code-workspace",
+    ],
+    "vscodeWorkspaceSwitcher.codeExecutable": "/usr/local/bin/code",
+    "python.formatting.autopep8Args": [],
+    "python.linting.flake8Args": [],
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "none",
+    "python.linting.mypyArgs": [
+        "--ignore-missing-imports",
+        "--follow-imports=silent"
+    ],
+    "python.linting.pep8Args": [
+        // E501: Line too long (already captured by flake8)
+        "--ignore=E501"
+    ],
+    "python.linting.pep8Enabled": true,
+    "python.linting.prospectorArgs": [],
+    "python.linting.prospectorEnabled": false,
+    "python.linting.pydocstyleArgs": [
+        // D100: Missing docstring in public module
+        // D101: Missing docstring in public class
+        // D102: Missing docstring in public method
+        // D103: Missing docstring in public function
+        // D105: Missing docstring in magic mthod
+        // D106: Missing docstring in public nested class
+        // D107: Missing docstring in __init__
+        // D212: Multi-line docstring summary should start at the first line.
+        // D406: Section name should end with a newline
+        // D407: Missing dashed underline after section
+        "--ignore=D100,D101,D102,D103,D105,D106,D107,D203,D212,D406,D407"
+    ],
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pylamaArgs": [],
+    "python.linting.pylamaEnabled": false,
+    "python.linting.pylintArgs": [],
+    "python.linting.pylintEnabled": true,
+    "python.sortImports.args": [],
+    "python.unitTest.pyTestArgs": [],
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.unittestEnabled": false,
+    "workbench.startupEditor": "none",
+    "python.autoComplete.extraPaths": [],
+    "python.linting.ignorePatterns": [
+        ".vscode/*.py",
+        "**/site-packages/**/*.py",
+        "**/.mypy_cache",
+        "**/.pytest_cache",
+    ],
+    "terminal.integrated.lineHeight": 1.3,
+    "terminal.external.osxExec": "Iterm.app",
+    "terminal.integrated.cursorStyle": "underline",
+    "python.pythonPath": "python",
+    "python.venvPath": "/Users/aubreytaylor/.virtualenv/",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.wordWrap": "off",
+    "editor.wordWrapColumn": 80,
+    "[markdown]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.quickSuggestions": false,
+        "editor.wordWrapColumn": 80,
+    },
+    "python.venvFolders": [
+        "envs",
+        ".pyenv",
+        ".direnv",
+        ".venv"
+    ],
+    "html.format.enable": false,
+    "emmet.triggerExpansionOnTab": false,
+    "files.associations": {
+        "Clickfile": "python",
+        "base.txt": "pip-requirements",
+        "local.txt": "pip-requirements",
+        "prod.txt": "pip-requirements",
+        "production.txt": "pip-requirements",
+        "dev.txt": "pip-requirements",
+    },
+    "cSpell.enabled": false,
+    "workbench.statusBar.feedback.visible": false,
+    "cSpell.userWords": [
+        "repo"
+    ],
+    "explorer.confirmDelete": false,
+    "editor.formatOnPaste": false,
+    "python.linting.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "todo-tree.tags": [
+        "TODO",
+        "FIXME",
+        "REVIEW",
+        "QUESTION",
+        "TEMP",
+        "SHAME",
+        "NOTE",
+    ],
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "todo-tree.defaultHighlight": {
+        "foreground": "green",
+        "type": "none"
+    },
+    "todo-tree.customHighlight": {
+        "TODO": {},
+        "FIXME": {},
+        "REVIEW": {},
+        "QUESTION": {},
+        "TEMP": {},
+        "SHAME": {},
+        "NOTE": {}
+    },
+    "search.collapseResults": "alwaysCollapse",
+    "editor.renderIndentGuides": false,
+    "scm.diffDecorations": "overview",
+    "editor.fontSize": 12,
+    "editor.lineHeight": 22,
+    "markdown.preview.lineHeight": 1.625,
+    "workbench.sideBar.location": "left",
+    "editor.fontFamily": "'Dank Mono', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.renderLineHighlight": "none",
+    "workbench.statusBar.visible": false,
+    "editor.fontWeight": "bold",
+    "emmet.includeLanguages": {
+        "django-html": "html",
+    },
+}
