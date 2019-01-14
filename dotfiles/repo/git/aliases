@@ -6,8 +6,3 @@
 
 # See also: ~/.gitconfig
 
-alias gf='git fetch --all'
-alias gall='git add -A'
-alias gs='git status'
-alias gp='git push'
-alias clone='cd $HOME/Workspace && git clone '
