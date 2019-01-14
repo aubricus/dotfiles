@@ -6,3 +6,4 @@
 
 
 function docker-stop { docker stop $(docker ps -q); }
+function docker-images-prune { docker rmi $(docker images -q -f dangling=true); }
