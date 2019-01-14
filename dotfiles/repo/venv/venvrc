@@ -7,11 +7,11 @@
 # Env Setup
 # =====================================
 
-export WORKON_HOME="${HOME}/.virtualenv"
-export PIP_VIRTUALENV_BASE="$WORKON_HOME"
-export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
-export PIP_REQUIRE_VIRTUALENV=true
-export PIP_RESPECT_VIRTUALENV=true
+# export WORKON_HOME="${HOME}/.virtualenv"
+# export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+# export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+# export PIP_REQUIRE_VIRTUALENV=true
+# export PIP_RESPECT_VIRTUALENV=true
 
 # Functions
 # =====================================
@@ -75,8 +75,8 @@ if ! type_exists "virtualenv"; then
     exit 1
 fi
 
-load_venv_wrapper
-activate_default_env "python" python3
+# load_venv_wrapper
+# activate_default_env "python" python3
 
 # Cleanup
 # =====================================
