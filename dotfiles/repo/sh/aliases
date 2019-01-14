@@ -75,3 +75,8 @@ function trash { mv "$1" ~/.Trash; }
 
 # Run WP Scan
 function wpscan { docker run -it --rm wpscanteam/wpscan --url "$1" --enumerate u1-1000; }
+
+# Add ssh key
+function ssh-add-all {
+    ssh-add ~/.ssh/*_rsa
+}
