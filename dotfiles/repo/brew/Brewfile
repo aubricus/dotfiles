@@ -29,6 +29,7 @@ brew "ctags"
 brew "git-flow"
 brew "pipenv"
 brew "pyenv"
+brew "direnv"
 
 cask "1password"
 cask "docker"
