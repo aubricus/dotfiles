@@ -25,3 +25,6 @@ fi
 
 # Enable Pyenv
 eval "$(pyenv init -)"
+
+# Enable Direnv
+eval "$(direnv hook bash)"
