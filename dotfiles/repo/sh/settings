@@ -4,7 +4,6 @@
 # BASH SETTINGS
 # -------------------------------------
 
-
 # Set 256 color profile where possible
 if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
     export TERM=gnome-256color
@@ -19,12 +18,21 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
-# Enable travis
-[ -f /Users/aubreytaylor/.travis/travis.sh ] && source /Users/aubreytaylor/.travis/travis.sh
+# Travis
+# -------------------------------------
+
+[ -f /Users/aubreytaylor/.travis/travis.sh ] && source "/Users/aubreytaylor/.travis/travis.sh"
 
 
-# Enable Pyenv
+# Pyenv
+# -------------------------------------
+
+export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
+
 eval "$(pyenv init -)"
 
-# Enable Direnv
+# Direnv
+# -------------------------------------
+
 eval "$(direnv hook bash)"
