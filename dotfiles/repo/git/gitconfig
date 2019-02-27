@@ -13,6 +13,8 @@
     rbo = "!f() { git rebase origin/$1; }; f"
     rbu = "!f() { git rebase upstream/$1; }; f"
     rbi = "!f() { git rebase -i $1^; }; f"
+    ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
+
 
     # Stage files in interactive mode
     stg = add -i
