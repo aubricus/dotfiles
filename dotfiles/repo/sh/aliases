@@ -41,6 +41,12 @@ alias pcat="pygmentize -O style=monokai -f console256 -g"
 function pless { pcat "$1" | less -r; }
 alias cookiecutter-django="cookiecutter https://github.com/blitzagency/cookiecutter-django"
 
+# Fix OSX Shenanigans
+# =====================================
+
+alias reset_audio="sudo killall coreaudiod"
+alias reset_bluetooth="sudo pkill bluetoothd"
+
 # Misc alises
 # =====================================
 
