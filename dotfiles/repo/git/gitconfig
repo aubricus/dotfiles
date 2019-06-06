@@ -15,7 +15,6 @@
     rbi = "!f() { git rebase -i $1^; }; f"
     ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
 
-
     # Stage files in interactive mode
     stg = add -i
 
@@ -27,6 +26,11 @@
 
     # Fetch everything
     fetch-all = fetch --all
+    fa = fetch --all
+
+    # Fast-forward
+    fast-forward = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
+    ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Push to origin and track using teh same name
     push-origin = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
