@@ -23,12 +23,15 @@ fi
 
 [ -f /Users/aubreytaylor/.travis/travis.sh ] && source "/Users/aubreytaylor/.travis/travis.sh"
 
+# Exports
+# ------------------------------------
+
+export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/curl/lib -L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include -I/usr/local/opt/curl/include -I/usr/local/opt/openssl/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig"
 
 # Pyenv
 # -------------------------------------
-
-export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="-I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include"
 
 eval "$(pyenv init -)"
 
