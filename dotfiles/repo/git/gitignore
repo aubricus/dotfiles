@@ -1,38 +1,110 @@
-# -------------------------------------
-# ALWAYS IGNORE
-# -------------------------------------
 
-*.mo
-node_modules/
-.sass-cache/
-._*
-.DS_Store
-Thumbs.db
-.Spotlight-V100
-.Trashes
-*~
-*.diff
-*.err
-*.log
-*.orig
-*.pyc
-*.rej
-*.sass-cache
-*.sw?
-*.vi
-nohup.out
+# Created by https://www.gitignore.io/api/osx,linux,macos,windows,archives
+# Edit at https://www.gitignore.io/?templates=osx,linux,macos,windows,archives
+
+### Archives ###
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
 *.7z
-*.dmg
-*.gz
-*.iso
 *.jar
 *.rar
-*.tar
 *.zip
+*.gz
+*.tgz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.cab
+
+# Packing-only formats
+*.iso
+*.tar
+
+# Package management formats
+*.dmg
+*.xpi
+*.gem
 *.egg
-*.egg-info
-*.swp
-*.sublime-project
-*.sublime-workspace
-*.pytest_cache
-*.mypy_cache
+*.deb
+*.rpm
+*.msi
+*.msm
+*.msp
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### OSX ###
+# General
+
+# Icon must end with two \r
+
+# Thumbnails
+
+# Files that might appear in the root of a volume
+
+# Directories potentially created on remote AFP share
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.msix
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/osx,linux,macos,windows,archives
