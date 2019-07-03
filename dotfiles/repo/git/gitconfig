@@ -8,12 +8,11 @@
     # List all aliases
     aliases = config --get-regexp ^alias\
 
-    # Re-base shortcuts
+    # Re-base / Merge shortcuts
     rb = "!f() { git rebase ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
     rbo = "!f() { git rebase origin/$1; }; f"
     rbu = "!f() { git rebase upstream/$1; }; f"
     rbi = "!f() { git rebase -i $1^; }; f"
-    ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Stage files in interactive mode
     stg = add -i
@@ -33,7 +32,12 @@
     ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Push to origin and track using teh same name
+    # NOTE: Still need this now that push.default = current?
     push-origin = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+    po = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+
+    # Push tags
+    push-tags = git push origin --tags
 
     # Clean .orig files
     clean-orig = "!f() { find . -name \"*.orig\" -delete; }; f"
@@ -63,6 +67,12 @@
     # Update last commit without a prompt
     commit-update = commit --amend --no-edit
 
+    # Create a new branch
+    branch = "!f() { git checkout -b $1; }; f"
+
+    # Create a pull request (requires hub is installed)
+    pr = "!f() { hub pull-request $1; }; f"
+
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
     ui = auto
@@ -76,15 +86,6 @@
 [credential]
     helper = osxkeychain
 
-[pretty]
-    # tut: http://gitimmersion.com/lab_10.html
-    # ref: http://linux.die.net/man/1/git-log
-    # Result: <short-sha> <commit-message> (<pointer-names>) -- <commit-author-name>; <relative-time>
-    nice = "%C(yellow)%h%C(reset) %C(white)%s%C(cyan)%d%C(reset) -- %an; %ar"
-
-[push]
-    default = tracking
-
 [diff]
     # Default settings, I usually install Kaleidoscope which will update this file/entry
     tool = mvimdiff
@@ -92,3 +93,27 @@
 [difftool]
     prompt = false
 
+[pretty]
+    # tut: http://gitimmersion.com/lab_10.html
+    # ref: http://linux.die.net/man/1/git-log
+    # Result: <short-sha> <commit-message> (<pointer-names>) -- <commit-author-name>; <relative-time>
+    nice = "%C(yellow)%h%C(reset) %C(white)%s%C(cyan)%d%C(reset) -- %an; %ar"
+
+[push]
+	default = current
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+
+[merge]
+	tool = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[mergetool]
+	prompt = false
+
+[pull]
+	ff = only
