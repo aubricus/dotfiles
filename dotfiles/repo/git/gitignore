@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/osx,linux,macos,windows,archives
-# Edit at https://www.gitignore.io/?templates=osx,linux,macos,windows,archives
+# Created by https://www.gitignore.io/api/git,osx,linux,macos,windows,archives
+# Edit at https://www.gitignore.io/?templates=git,osx,linux,macos,windows,archives
 
 ### Archives ###
 # It's better to unpack these files and commit the raw source because
@@ -31,6 +31,21 @@
 *.msi
 *.msm
 *.msp
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Linux ###
 *~
@@ -89,6 +104,7 @@ Temporary Items
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
@@ -107,4 +123,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/osx,linux,macos,windows,archives
+# End of https://www.gitignore.io/api/git,osx,linux,macos,windows,archives
