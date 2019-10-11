@@ -73,6 +73,21 @@
     # Create a pull request (requires hub is installed)
     pr = "!f() { hub pull-request $1; }; f"
 
+    # gitignore.io
+    ignore = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
+
+    # Print out HEAD commit
+    head = rev-parse HEAD
+
+    # Merge, fast-forward only
+    fmerge = merge --ff-only
+
+    # Merge, No fast-forward
+    nmerge = merge --no-ff
+
+    # Merge, Squash
+    smerge = merge --squash
+
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
     ui = auto
@@ -114,6 +129,7 @@
 
 [mergetool]
 	prompt = false
+    keepBackup = false
 
 [pull]
 	ff = only
