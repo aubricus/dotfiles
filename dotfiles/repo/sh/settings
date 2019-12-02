@@ -30,12 +30,4 @@ export LDFLAGS="-L/usr/local/opt/sqlite/lib -L/usr/local/opt/zlib/lib -L/usr/loc
 export CPPFLAGS="-I/usr/local/opt/sqlite/include -I/usr/local/opt/zlib/include -I/usr/local/opt/curl/include -I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig"
 
-# Pyenv
-# -------------------------------------
 
-eval "$(pyenv init -)"
-
-# Direnv
-# -------------------------------------
-
-eval "$(direnv hook bash)"
