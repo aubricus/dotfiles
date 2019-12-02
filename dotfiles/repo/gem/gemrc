@@ -1,0 +1,6 @@
+# -------------------------------------
+# GEMRC
+# -------------------------------------
+# SEE: https://guides.rubygems.org/command-reference/#gem-install
+
+gem: --no-document
