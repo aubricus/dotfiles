@@ -6,8 +6,7 @@
 
 
 declare -a prepend=(
-    # Brew path, must preceed others
-    # Path for python@2 is required to link python2/pip2 properly
+    # NOTE: Brew path, must preceed others.
     "/usr/local/bin"
     "/usr/local/sbin"
     "/usr/local/opt/openssl/bin"
@@ -18,6 +17,9 @@ declare -a append=(
     "/usr/bin"
     "$HOME/bin"
     "$HOME/.poetry/bin"
+    # NOTE: Add RVM to PATH for scripting. 
+    #       Make sure this is the last PATH variable change.
+    "$HOME/.rvm/bin"
 )
 
 for i in ${!prepend[*]}
