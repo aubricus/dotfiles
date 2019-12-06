@@ -11,15 +11,13 @@ declare -a prepend=(
     "/usr/local/sbin"
     "/usr/local/opt/openssl/bin"
     "/usr/local/opt/curl/bin"
+    "/opt/chefdk/embedded/bin"
 )
 
 declare -a append=(
     "/usr/bin"
     "$HOME/bin"
     "$HOME/.poetry/bin"
-    # NOTE: Add RVM to PATH for scripting. 
-    #       Make sure this is the last PATH variable change.
-    "$HOME/.rvm/bin"
 )
 
 for i in ${!prepend[*]}
