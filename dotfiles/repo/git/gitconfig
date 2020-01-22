@@ -76,17 +76,23 @@
     # gitignore.io
     ignore = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
 
+    # Status shortcut
+    s = status
+
     # Print out HEAD commit
     head = rev-parse HEAD
 
     # Merge, fast-forward only
     fmerge = merge --ff-only
+    fm = merge --ff-only
 
     # Merge, No fast-forward
     nmerge = merge --no-ff
+    nm = merge --no-ff
 
     # Merge, Squash
     smerge = merge --squash
+    sm = merge --squash
 
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
