@@ -23,13 +23,14 @@
     # Use custom `.gitignore` and `.gitattributes`
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
+	editor = code --wait --new-window
 
 [credential]
     helper = osxkeychain
 
 [diff]
     # Default settings, I usually install Kaleidoscope which will update this file/entry
-    tool = mvimdiff
+	tool = vscode
 
 [difftool]
     prompt = false
@@ -43,15 +44,8 @@
 [push]
 	default = current
 
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustexitcode = true
-
 [merge]
-	tool = Kaleidoscope
-
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+	tool = vscode
 
 [mergetool]
 	prompt = false
@@ -61,3 +55,8 @@
 	ff = only
 [init]
 	defaultBranch = main
+    
+[difftool "vscode"]
+	cmd = code --wait --new-window --diff $LOCAL $REMOTE
+[mergetool "vscode"]
+	cmd = code --wait --new-window $MERGED
