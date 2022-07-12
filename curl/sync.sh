@@ -14,22 +14,21 @@ log() {
     local LEVEL="$1"
     local MESSAGE="$2"
 
-    if [ "$LEVEL" = "INFO" ]; then
+    if [[ "$LEVEL" = "INFO" ]]; then
         printf "$(tput setaf 7)▸ %s$(tput sgr0)\n" "$MESSAGE"
     fi
-    if [ "$LEVEL" = "WARNING" ]; then
+    if [[ "$LEVEL" = "WARNING" ]]; then
         printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$MESSAGE"
     fi
-    if [ "$LEVEL" = "ERROR" ]; then
+    if [[ "$LEVEL" = "ERROR" ]]; then
         printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$MESSAGE"
     fi
-    if [ "$LEVEL" = "SUCCESS" ]; then
+    if [[ "$LEVEL" = "SUCCESS" ]]; then
         printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$MESSAGE"
     fi
 }
 
 confirm() {
-    printf "\n"
     log "WARNING" "$@"
     read -p "$(tput setaf 7)▸ Please answer: (y/n) " -n 1
     printf "\n"
@@ -65,6 +64,8 @@ main() {
         if is_confirmed; then
             copy $CURLRC
         fi
+    else
+        copy $CURLRC
     fi
 }
 
