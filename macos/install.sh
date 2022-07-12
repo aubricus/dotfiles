@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# NVM INSTALL
-# - https://github.com/nvm-sh/nvm#installing-and-updating
+# MACOS INSTALL(S)
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # ----------
@@ -16,8 +15,11 @@ set -eu -o pipefail
 # ----
 # Main
 # ----
+
 main() {
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    # Rosetta helps some programs run on M1 architecture
+    # https://support.apple.com/en-us/HT211861
+    softwareupdate --install-rosetta
 }
 
 # ---

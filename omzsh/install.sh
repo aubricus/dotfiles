@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# NVM INSTALL
-# - https://github.com/nvm-sh/nvm#installing-and-updating
+# OH MY ZSH INSTALL
+# - https://ohmyz.sh/#install
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # ----------
@@ -17,7 +17,7 @@ set -eu -o pipefail
 # Main
 # ----
 main() {
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 # ---
