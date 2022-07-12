@@ -15,7 +15,7 @@ A simple repo to keep my machine setup and preferences centeralized and document
 
 ```bash
 git clone https://github.com/aubricus/dotfiles-new
-cd dotfiles-new
+cd dotfiles
 ```
 
 ## Usage
