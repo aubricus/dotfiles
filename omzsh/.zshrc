@@ -122,7 +122,7 @@ source $ZSH/oh-my-zsh.sh
 DEFAULT_USER=aubreytaylor
 
 # -------------------------------------
-# 1PASSWORD
+# 1PASSWORD CLI
 # -------------------------------------
 
 # Sign-in Alias
@@ -156,3 +156,10 @@ export NVM_DIR="$HOME/.nvm"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# -------------------------------------
+# POETRY
+# -------------------------------------
+
+# Setup
+export PATH="$HOME/.poetry/bin:$PATH"
