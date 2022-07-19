@@ -2,8 +2,7 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # POETRY INSTALL
-# - https://brew.sh/
-# - https://github.com/Homebrew/homebrew-bundle
+# - https://python-poetry.org/docs/
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # ----------

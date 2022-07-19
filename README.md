@@ -25,7 +25,7 @@ cd dotfiles
 **1.1 Manual Setup**
 See [macos/README.md](macos/README.md)
 
-**1.2 Install required software**
+**1.2 Install other required software**
 
 ```bash
 bash macos/install.sh
@@ -65,50 +65,51 @@ bash nvm/install.sh
 bash poetry/install.sh
 ```
 
-
-**Setup Steps**
-
-|   # | Step                             | Details                                                                                                         |
-| --: | :------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-|   1 | Setup Macos Prefs                | See [macos/README.md](macos/README.md)                                                                          |
-|   2 | Install Macos Updates            | See Fig. 2.0 – Install Macos Updates                                                                            |
-|   3 | Install Brew                     | See Fig. 3.0 – Install Brew & Brewfile                                                                          |
-|   4 | Link Iterm Prefs                 | Open General > Preferences & point it to [iterm/com.googlecode.iterm2.plist](iterm/com.googlecode.iterm2.plist) |
-|   5 | Install Oh My ZSH and sync prefs | See Fig 5.0 – Install Oh My ZSH                                                                                 |
-|   6 | Install NVM                      | See Fig 6.0 – Install NVM                                                                                       |
-|   7 | Install Poetry                   | See Fig 7.0 – Install Poetry
-|   8 | Sync Git Prefs                   | See Fig 8.0 – Sync Git Prefs                                                                                    |
-|   9 | Sync Vim Prefs                   | See Fig 9.0 – Sync Vim Prefs                                                                                    |
-|   10 | Login to 1Password               | Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>                          |
-|   11 | Login to 1Password CLI           | Type any valid 1Password CLI command, e.g. `os vault ls` and follow the prompts                                 |
-|  12 | Login to GitHub CLI              | Type any valid GitHub CLI command, e.g. `gh browse`                                                             |
-|  13 | Login to Shpoify CLI             | Run `shopify login`                                                                                             |
-|  14 | Login to Heroku CLI              | Run `heroku login`                                                                                              |
-|  15 | Setup VSCode Settings Sync       | See: <https://code.visualstudio.com/docs/editor/settings-sync> (Github, Select all)                             |
-|  16 | Login to Slack Workspace(s)      | Open Slack & login to all desired workspaces                                                                    |
-|  17 | Login to Chrome                  | Open Chrome and login to all desired profiles                                                                   |
-
-<br>
-
-
-
-
-**Fig 6.0 – Install NVM**
-
-
-
-
-**Fig 8.0 – Sync Git Prefs**
+**4.4 Sync Git Prefs**
 
 ```bash
 bash git/sync.sh
 ```
 
-**Fig 9.0 – Sync Vim Prefs**
+**4.5 Sync Vim Prefs**
 
 ```bash
 bash vim/sync.sh
 ```
+
+### 5.0 Misc. Setup
+
+**5.1 Login to 1Password**
+
+Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>
+
+**5.2 Login to 1Password CLI**
+
+Open the terminal and run any valid 1Password CLI command, e.g. `os vault ls` and follow the prompts.
+
+**5.3 Login to GitHub CLI**
+
+Open the terminal and run any valid GitHub CLI command, e.g. `gh browse`.
+
+**5.4 Login to Shopify CLI**
+
+Open the terminal and run `shopify login`.
+
+**5.5 Login to Heroku CLI**
+
+Open the terminal and run `heroku login`.
+
+**5.6 Setup VSCode settings sync**
+
+See: <https://code.visualstudio.com/docs/editor/settings-sync> (Github, Select all)
+
+**5.7 Login to Slack workspace(s)**
+
+Open Slack & login to all desired workspaces 
+
+**5.8 Login to Chrome profile(s)**
+
+Open Chrome and login to all desired profiles.
 
 ## Contributing
 
