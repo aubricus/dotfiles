@@ -14,3 +14,5 @@
 * Connected > internet accounts > google account
 * Created The Stable icloud account
 * Set display prefs
+* Set screenshots to go to Downloads/Screenshots
+  * Press CMD + Shift + 5, click on Options
