@@ -158,8 +158,16 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # -------------------------------------
+# PIPX
+# -------------------------------------
+
+# Setup
+export PATH="$PATH:/Users/aubreytaylor/.local/bin"
+
+# -------------------------------------
 # POETRY
 # -------------------------------------
 
 # Setup
 export PATH="$HOME/.poetry/bin:$PATH"
+

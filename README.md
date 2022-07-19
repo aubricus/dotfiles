@@ -57,12 +57,13 @@ bash omzsh/sync.sh
 bash nvm/install.sh
 ```
 
-**4.3 Install Poetry**
+**4.3 Install Poetry & virtualenv**
 
 > You may need to use pyenv to install Python
 
 ```bash
 bash poetry/install.sh
+bash virtualenv/install.sh
 ```
 
 **4.4 Sync Git Prefs**
