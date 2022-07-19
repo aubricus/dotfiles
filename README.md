@@ -20,6 +20,52 @@ cd dotfiles
 
 ## Usage
 
+### 1.0 Setup Macos
+
+**1.1 Manual Setup**
+See [macos/README.md](macos/README.md)
+
+**1.2 Install required software**
+
+```bash
+bash macos/install.sh
+```
+
+### 2.0 Install Brew & Brewfile
+
+```bash
+bash brew/install.sh
+brew bundle --file brew/Brewfile
+```
+
+### 3.0 Link Iterm Prefs
+
+**Open General** → **Preferences** and point it to [iterm/com.googlecode.iterm2.plist](iterm/com.googlecode.iterm2.plist)
+
+### 4.0 Setup CLI
+
+**4.1 Setup Oh My ZSH**
+
+```bash
+bash omzsh/install.sh
+bash omzsh/sync.sh
+```
+
+**4.2 Install NVM**
+
+```bash
+bash nvm/install.sh
+```
+
+**4.3 Install Poetry**
+
+> You may need to use pyenv to install Python
+
+```bash
+bash poetry/install.sh
+```
+
+
 **Setup Steps**
 
 |   # | Step                             | Details                                                                                                         |
@@ -30,52 +76,35 @@ cd dotfiles
 |   4 | Link Iterm Prefs                 | Open General > Preferences & point it to [iterm/com.googlecode.iterm2.plist](iterm/com.googlecode.iterm2.plist) |
 |   5 | Install Oh My ZSH and sync prefs | See Fig 5.0 – Install Oh My ZSH                                                                                 |
 |   6 | Install NVM                      | See Fig 6.0 – Install NVM                                                                                       |
-|   7 | Sync Git Prefs                   | See Fig 7.0 – Sync Git Prefs                                                                                    |
-|   8 | Sync Vim Prefs                   | See Fig 8.0 – Sync Vim Prefs                                                                                    |
-|   9 | Login to 1Password               | Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>                          |
-|   9 | Login to 1Password CLI           | Type any valid 1Password CLI command, e.g. `os vault ls` and follow the prompts                                 |
-|  10 | Login to GitHub CLI              | Type any valid GitHub CLI command, e.g. `gh browse`                                                             |
-|  11 | Login to Shpoify CLI             | Run `shopify login`                                                                                             |
-|  12 | Login to Heroku CLI              | Run `heroku login`                                                                                              |
-|  13 | Setup VSCode Settings Sync       | See: <https://code.visualstudio.com/docs/editor/settings-sync> (Github, Select all)                             |
-|  14 | Login to Slack Workspace(s)      | Open Slack & login to all desired workspaces                                                                    |
-|  15 | Login to Chrome                  | Open Chrome and login to all desired profiles                                                                   |
+|   7 | Install Poetry                   | See Fig 7.0 – Install Poetry
+|   8 | Sync Git Prefs                   | See Fig 8.0 – Sync Git Prefs                                                                                    |
+|   9 | Sync Vim Prefs                   | See Fig 9.0 – Sync Vim Prefs                                                                                    |
+|   10 | Login to 1Password               | Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>                          |
+|   11 | Login to 1Password CLI           | Type any valid 1Password CLI command, e.g. `os vault ls` and follow the prompts                                 |
+|  12 | Login to GitHub CLI              | Type any valid GitHub CLI command, e.g. `gh browse`                                                             |
+|  13 | Login to Shpoify CLI             | Run `shopify login`                                                                                             |
+|  14 | Login to Heroku CLI              | Run `heroku login`                                                                                              |
+|  15 | Setup VSCode Settings Sync       | See: <https://code.visualstudio.com/docs/editor/settings-sync> (Github, Select all)                             |
+|  16 | Login to Slack Workspace(s)      | Open Slack & login to all desired workspaces                                                                    |
+|  17 | Login to Chrome                  | Open Chrome and login to all desired profiles                                                                   |
 
 <br>
 
-**Fig 2.0 – Install Macos Updates**
 
-```bash
-bash macos/install.sh
-```
 
-**Fig 3.0 – Install Brew & Brewfile**
-
-```bash
-bash brew/install.sh
-brew bundle --file brew/Brewfile
-```
-
-**Fig 5.0 – Install Oh My ZSH**
-
-```bash
-bash omzsh/install.sh
-bash omzsh/sync.sh
-```
 
 **Fig 6.0 – Install NVM**
 
-```bash
-bash nvm/install.sh
-```
 
-**Fig 7.0 – Sync Git Prefs**
+
+
+**Fig 8.0 – Sync Git Prefs**
 
 ```bash
 bash git/sync.sh
 ```
 
-**Fig 8.0 – Sync Vim Prefs**
+**Fig 9.0 – Sync Vim Prefs**
 
 ```bash
 bash vim/sync.sh
