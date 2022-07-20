@@ -2,7 +2,7 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # POETRY INSTALL
-# - https://python-poetry.org/docs/
+# - https://python-poetry.org/docs/master/#installing-with-the-official-installer
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # ----------
@@ -18,7 +18,7 @@ set -eu -o pipefail
 # ----
 
 main() {
-    pipx install poetry
+    curl -sSL https://install.python-poetry.org | python3 -
 }
 
 # ---
