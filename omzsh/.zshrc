@@ -162,12 +162,4 @@ eval "$(pyenv init -)"
 # -------------------------------------
 
 # Setup
-export PATH="$PATH:/Users/aubreytaylor/.local/bin"
-
-# -------------------------------------
-# POETRY
-# -------------------------------------
-
-# Setup
-export PATH="$HOME/.poetry/bin:$PATH"
-
+export PATH="$PATH:$HOME/.local/bin"
