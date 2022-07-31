@@ -46,3 +46,4 @@
     - iCloud drive, photos, keychain, find my mac, home
 11. Software Update
   - Check for any software updates
+12. Open finder and turn off Airdrop 
