@@ -35,6 +35,9 @@ bash macos/install.sh
 
 ```bash
 bash brew/install.sh
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/aubricus/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew tap Homebrew/bundle
 brew bundle --file brew/Brewfile
 ```
 
