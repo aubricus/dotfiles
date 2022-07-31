@@ -21,7 +21,6 @@ set -eu -o pipefail
 main() {
     if test ! $(which brew); then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        brew tap Homebrew/bundle
     else
         echo "Brew already installed..."
     fi
