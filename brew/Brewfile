@@ -38,7 +38,10 @@ brew "shopify-cli"                  # https://shopify.dev/themes/tools/cli/insta
 # Comment these out before running Brewfile
 cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
 cask "1password"                    # https://formulae.brew.sh/cask/1password
-cask "google-chrome"                # https://formulae.brew.sh/cask/google-chrome
+
+# Couldn't install chrome last time
+# Error: Cask 'google-chrome' does not have a sha256 checksum defined and was not installed
+# cask "google-chrome"                # https://formulae.brew.sh/cask/google-chrome
 
 # Brewfile installs
 cask "1password/tap/1password-cli"  # https://formulae.brew.sh/cask/1password-cli
