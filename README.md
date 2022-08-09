@@ -38,7 +38,7 @@ bash brew/install.sh
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/aubricus/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew tap Homebrew/bundle
-brew bundle --file brew/Brewfile
+brew bundle --file brew/Brewfile.[work|personal]
 ```
 
 ### 3.0 Link Iterm Prefs
@@ -69,6 +69,8 @@ bash poetry/install.sh
 bash virtualenv/install.sh
 ```
 
+Notes 7/31: poetry install failed for some reason
+
 **4.4 Sync Git Prefs**
 
 ```bash
@@ -83,37 +85,40 @@ bash vim/sync.sh
 
 ### 5.0 Misc. Setup
 
-**5.1 Login to 1Password**
-
-Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>
-
-**5.2 Login to 1Password CLI**
-
-Open the terminal and run any valid 1Password CLI command, e.g. `os vault ls` and follow the prompts.
-
-**5.3 Login to GitHub CLI**
-
-Open the terminal and run any valid GitHub CLI command, e.g. `gh browse`.
-
-**5.4 Login to Shopify CLI**
-
-Open the terminal and run `shopify login`.
-
-**5.5 Login to Heroku CLI**
-
-Open the terminal and run `heroku login`.
-
-**5.6 Setup VSCode settings sync**
+**5.1 Setup VSCode settings sync**
 
 See: <https://code.visualstudio.com/docs/editor/settings-sync> (Github, Select all)
 
-**5.7 Login to Slack workspace(s)**
+**5.2 Login to 1Password**
+
+Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>
+
+**5.3 Login to Slack workspace(s)**
 
 Open Slack & login to all desired workspaces 
 
-**5.8 Login to Chrome profile(s)**
+**5.4 Login to Chrome profile(s)**
 
 Open Chrome and login to all desired profiles.
+
+**5.5 Login to 1Password CLI**
+
+* Open the terminal and run any valid 1Password CLI command, e.g. `op vault ls` and follow the prompts (add account manually).
+* Once completed, you can restart the session and run this alias to sign-in `opsignin`.
+
+**5.6 Login to GitHub CLI**
+
+Open the terminal and run any valid GitHub CLI command, e.g. `gh browse`.
+
+**5.7 Login to Shopify CLI** (Work only)
+
+Open the terminal and run `shopify login`.
+
+**5.8 Login to Heroku CLI** (Work only)
+
+Open the terminal and run `heroku login`.
+
+
 
 ## Contributing
 
