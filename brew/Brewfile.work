@@ -1,6 +1,9 @@
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # BREWFILE
 # - https://github.com/Homebrew/homebrew-bundle
+#
+# Usage:
+# brew bundle --file brew/Brewfile.work
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # -----
@@ -36,8 +39,8 @@ brew "shopify-cli"                  # https://shopify.dev/themes/tools/cli/insta
 
 # Previous Manual Installs
 # Comment these out before running Brewfile
-cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
-cask "1password"                    # https://formulae.brew.sh/cask/1password
+# cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
+# cask "1password"                    # https://formulae.brew.sh/cask/1password
 
 # Couldn't install chrome last time
 # Error: Cask 'google-chrome' does not have a sha256 checksum defined and was not installed
@@ -53,3 +56,4 @@ cask "rectangle"                    # https://formulae.brew.sh/cask/rectangle
 cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
 cask "skitch"                       # https://formulae.brew.sh/cask/skitch
+cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
