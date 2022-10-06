@@ -28,6 +28,7 @@ brew "pyenv"                        # https://formulae.brew.sh/formula/pyenv
 brew "direnv"                       # https://formulae.brew.sh/formula/direnv
 brew "pipx"                         # https://formulae.brew.sh/formula/pipx
 brew "gh"                           # https://formulae.brew.sh/formula/gh
+brew "ruby"                         # https://formulae.brew.sh/formula/ruby
 
 # ------------
 # App Installs
