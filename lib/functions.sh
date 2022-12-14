@@ -26,8 +26,8 @@ unset_functions() {
 # Log a message with a pre-formatted "level".
 # 
 # Params:
-#   - $1: LEVEL - Level to log, required, case sensitive (INFO, WARNING, ERROR, SUCCESS)
-#   - $2: MESSAGE – Message to log, required
+#   $1: LEVEL - Level to log, required, case sensitive (INFO, WARNING, ERROR, SUCCESS)
+#   $2: MESSAGE - Message to log, required
 #
 # Example:
 # log "INFO" "Hello world!"
@@ -51,6 +51,12 @@ msg() {
 }
 
 # Simple function to log a command and immediatley run it.
+# 
+# Params:
+#   $@ - Command to trace and run
+#
+# Example:
+#   trace echo "Hello world!"
 trace() {
     local COMMAND_STR="$@"
     msg "INFO" "Running: $COMMAND_STR"
@@ -63,7 +69,7 @@ trace() {
 # Works with is_confirmed.
 # 
 # Params:
-# - $@: MESSAGE
+#   $@ - MESSAGE
 # 
 # Example:
 # confirm "Say hello?"
@@ -93,7 +99,7 @@ is_confirmed() {
 # Check if a program is available.
 #
 # Params:
-#   $1 The command to check
+#   $1 - The command to check
 #
 # Example:
 #   if check echo; then
