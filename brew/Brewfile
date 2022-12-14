@@ -43,7 +43,6 @@ brew "ruby"                         # https://formulae.brew.sh/formula/ruby
 
 cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
 cask "1password"                    # https://formulae.brew.sh/cask/1password
-cask "1password/tap/1password-cli"  # https://formulae.brew.sh/cask/1password-cli
 cask "docker"                       # https://formulae.brew.sh/formula/docker
 cask "firefox"                       # https://formulae.brew.sh/cask/firefox
 cask "slack"                        # https://formulae.brew.sh/cask/slack

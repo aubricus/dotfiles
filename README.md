@@ -18,7 +18,7 @@ git clone https://github.com/aubricus/dotfiles.work
 cd dotfiles.work
 ```
 
-- NOTE: If this is a private repo you'll need to log in to Github first. 
+- NOTE: If this is a private repo you'll need to log in to Github first.
 
 ## Usage
 
@@ -26,8 +26,8 @@ cd dotfiles.work
 
 2. Manual Mac Setup (see [macos/README.md](./macos/README.md))
 3. Run `bash macos/install.sh`
-1. [Download & install Chrome](https://www.google.com/chrome/) (Note: `brew` based install is not secure, see notes in [Brewfile](./brew/Brewfile))
-4. Install `brew` and run `Brewfile`
+4. [Download & install Chrome](https://www.google.com/chrome/) (Note: `brew` based install is not secure, see notes in [Brewfile](./brew/Brewfile))
+5. Install `brew` and run `Brewfile`
 
 ```bash
 # Run basic install...
@@ -79,14 +79,9 @@ pyenv global 3.11.1
 1. Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>
 2. Open Slack & login to all desired workspaces
 3. Open Chrome and login to all desired profiles
-4. Login to 1Password CLI\*\*
-
-- Open the terminal and run any valid 1Password CLI command, e.g. `op vault ls` and follow the prompts (add account manually).
-- Once completed, you can restart the session and run this alias to sign-in `opsignin`.
-
-5. Login to `gh`, run `gh browse`.
-6. Login to Shopify `shopify2`, run `shopify2 login`
-7. Login to `heroku`, run `heroku login`
+4. Login to `gh`, run `gh browse`.
+5. Login to Shopify `shopify2`, run `shopify2 login`
+6. Login to `heroku`, run `heroku login`
 
 ## Contributing
 

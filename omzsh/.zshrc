@@ -122,17 +122,6 @@ source $ZSH/oh-my-zsh.sh
 DEFAULT_USER=aubreytaylor
 
 # -------------------------------------
-# 1PASSWORD CLI
-# -------------------------------------
-
-# Sign-in Alias
-#   NOTE: Single quotes are intentional to prevent expansion.
-alias opsignin='eval $(op signin)'
-
-# Enable Completions
-eval "$(op completion zsh)"; compdef _op op
-
-# -------------------------------------
 # DIRENV
 # -------------------------------------
 
@@ -171,3 +160,10 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH=/opt/homebrew/opt/ruby/bin:$PATH
   export PATH=`gem environment gemdir`/bin:$PATH
 fi
+
+# -------------------------------------
+# VSCODE
+# -------------------------------------
+
+# Enable `code` from terminal
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
