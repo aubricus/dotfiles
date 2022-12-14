@@ -5,22 +5,18 @@
 # - https://github.com/nvm-sh/nvm#installing-and-updating
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# ----------
-# Bash Flags
-# ----------
-# -e, exit on error
-# -u, unset variable is an error
-# -o pipefail, fail pipe chain if error
+# Bash flags
+#  -e, exit on error
+#  -u, unset variable is an error
+#  -o pipefail, fail pipe chain if error
+#  See: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -eu -o pipefail
 
-# ----
 # Main
-# ----
 main() {
+    # NOTE: NVM install.sh will check to see if it's installed or not and quit if so.
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 }
 
-# ---
 # Run
-# ---
 main
