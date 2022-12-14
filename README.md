@@ -70,18 +70,18 @@ pyenv global 3.11.1
 
 9. Install `virtualenv`, run `bash virtualenv/install.sh`
 10. Install `poetry`, run `bash poetry/install.sh`
-11. Sync `git` prefs, run `bash git/sync.sh`. Note `git` is installed with the [Brewfile](./brew/Brewfile))
+11. Sync `git` prefs, run `bash git/sync.sh`
 12. Sync `vim` prefs, run `bash vim/sync.sh`
-13. Setup VSCode settings: [docs/editor/settings-sync](https://code.visualstudio.com/docs/editor/settings-sync) (Github, Select all)
+13. Setup VSCode settings: [VSCode Settings Sync](https://code.visualstudio.com/docs/editor/settings-sync)
+14. Setup 1Passsord using setup QR Code, see: [1Password Secret Key](https://support.1password.com/secret-key/)
+15. Open Slack & login to all desired workspaces
+16. Open Chrome and login to all desired profiles
 
-### Misc
+### Misc / Optional
 
-1. Open 1Password and use setup QR Code, see: <https://support.1password.com/secret-key/>
-2. Open Slack & login to all desired workspaces
-3. Open Chrome and login to all desired profiles
-4. Login to `gh`, run `gh browse`.
-5. Login to Shopify `shopify2`, run `shopify2 login`
-6. Login to `heroku`, run `heroku login`
+1. Login to `gh`, run `gh browse`.
+2. Login to Shopify `shopify2`, run `shopify2 login`
+3. Login to `heroku`, run `heroku login`
 
 ## Contributing
 
