@@ -15,7 +15,7 @@
 
 # Declarations 
 
-declare -a functions_h=("log")
+declare -a functions_h=("msg", "trace", "confirm", "is_confirmed", "check", "copy")
 
 unset_functions() {
     unset ${functions_h[*]}
@@ -103,7 +103,7 @@ is_confirmed() {
 #
 # Example:
 #   if check echo; then
-#       echo "The echo command is available!"
+#       echo "The echo command igit s available!"
 #   fi
 #
 # See: https://stackoverflow.com/a/677212
@@ -112,5 +112,24 @@ check() {
         return 0
     else
         return 1
+    fi
+}
+
+# Simple copy util that includes a check for if the file exists or not
+#
+# Params:
+#   $1: COPY_FROM – The source file
+#   $2: COPY_TO – The destination
+#
+# Example:
+#   copy "$PWD/path/to/file.txt" "$HOME"
+copy() {
+    local COPY_FROM="$1"
+    local COPY_TO="$2"
+    if [[ -f "$COPY_FROM" ]]; then
+        trace cp -- "$COPY_FROM" "$COPY_TO"
+        msg "SUCCESS" "Done!"
+    else
+        msg "ERROR" "$COPY_FROM does not exist."
     fi
 }
