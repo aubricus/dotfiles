@@ -4,91 +4,53 @@
 # COPY ZHS PREFS TO $HOME
 # - https://github.com/ohmyzsh/ohmyzsh/wiki
 # - https://www.zerotohero.dev/zshell-startup-files/
+#
+# Example:
+#  bash omzsh/sync.sh
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# -e, exit on error
-# -u, unset variable is an error
-# -o pipefail, fail pipe chain if error
+# Bash flags
+#  -e, exit on error
+#  -u, unset variable is an error
+#  -o pipefail, fail pipe chain if error
+#  See: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -eu -o pipefail
 
-# ---------
-# Functions
-# ---------
+# Imports
+source "$PWD/lib/functions.sh"
 
-log() {
-    local LEVEL="$1"
-    local MESSAGE="$2"
-
-    if [[ "$LEVEL" = "INFO" ]]; then
-        printf "$(tput setaf 7)▸ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "WARNING" ]]; then
-        printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "ERROR" ]]; then
-        printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "SUCCESS" ]]; then
-        printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-}
-
-confirm() {
-    log "WARNING" "$@"
-    read -p "$(tput setaf 7)▸ Please answer: (y/n) " -n 1
-    printf "\n"
-}
-
-is_confirmed() {
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        return 0
-    fi
-    return 1
-}
-
-copy() {
-    local FILE="$@"
-    if [[ -f "$FILE" ]]; then
-        log "INFO" "Copying $FILE to $HOME ..."
-        cp -- "$FILE" "$HOME"
-        log "SUCCESS" "Done!"
-    else
-        log "ERROR" "$FILE does not exist."
-    fi
-}
-
-# ----
 # Main
-# ----
 main() {
-    local ZPROFILE="$PWD/omzsh/.zprofile"
-    local ZPROFILE_EXISTING="$HOME/.zprofile"
-    if [[ -e "$ZPROFILE_EXISTING" ]]; then
-        log "WARNING" "Found existing: $ZPROFILE_EXISTING"
-        confirm "Copy $ZPROFILE to $HOME anyway?"
+    local ZPROFILE_LOCAL="$PWD/omzsh/.zprofile"
+    local ZPROFILE_HOME="$HOME/.zprofile"
+    if [[ -e "$ZPROFILE_HOME" ]]; then
+        msg "WARNING" "Found existing: $ZPROFILE_HOME"
+        confirm "Copy $ZPROFILE_LOCAL to $ZPROFILE_HOME anyway?"
 
         if is_confirmed; then
-            copy $ZPROFILE
+            copy "$ZPROFILE_LOCAL" "$ZPROFILE_HOME"
+        else
+            msg "ERROR" "Ok, aborting..."
         fi
     else
-        copy $ZPROFILE
+        copy "$ZPROFILE_LOCAL" "$ZPROFILE_HOME"
     fi
 
-    local ZSHRC="$PWD/omzsh/.zshrc"
-    local ZSHRC_EXISTING="$HOME/.zshrc"
-    if [[ -e "$ZSHRC_EXISTING" ]]; then
-        log "WARNING" "Found existing: $ZSHRC_EXISTING"
-        confirm "Copy $ZSHRC to $HOME anyway?"
+    local ZSHRC_LOCAL="$PWD/omzsh/.zshrc"
+    local ZSHRC_HOME="$HOME/.zshrc"
+    if [[ -e "$ZSHRC_HOME" ]]; then
+        msg "WARNING" "Found existing: $ZSHRC_HOME"
+        confirm "Copy $ZSHRC_LOCAL to $ZSHRC_HOME anyway?"
 
         if is_confirmed; then
-            copy $ZSHRC
+            copy "$ZSHRC_LOCAL" "$ZSHRC_HOME"
+        else
+            msg "ERROR" "Ok, aborting..."
         fi
     else
-        copy $ZSHRC
+        copy "$ZSHRC_LOCAL" "$ZSHRC_HOME"
     fi
 }
 
-# ---
 # Run
-# ---
 main
