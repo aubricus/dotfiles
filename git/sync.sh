@@ -5,96 +5,67 @@
 # - https://git-scm.com/docs/gitattributes
 # - https://git-scm.com/docs/git-config
 # - https://git-scm.com/docs/gitignore
+#
+# Example:
+#   bash git/sync.sh
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# -e, exit on error
-# -u, unset variable is an error
-# -o pipefail, fail pipe chain if error
+# Bash flags
+#  -e, exit on error
+#  -u, unset variable is an error
+#  -o pipefail, fail pipe chain if error
+#  See: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -eu -o pipefail
 
-log() {
-    local LEVEL="$1"
-    local MESSAGE="$2"
+# Imports
+source "$PWD/lib/functions.sh"
 
-    if [[ "$LEVEL" = "INFO" ]]; then
-        printf "$(tput setaf 7)▸ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "WARNING" ]]; then
-        printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "ERROR" ]]; then
-        printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "SUCCESS" ]]; then
-        printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-}
 
-confirm() {
-    log "WARNING" "$@"
-    read -p "$(tput setaf 7)▸ Please answer: (y/n) " -n 1
-    printf "\n"
-}
-
-is_confirmed() {
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        return 0
-    fi
-    return 1
-}
-
-copy() {
-    local FILE="$@"
-    if [[ -f "$FILE" ]]; then
-        log "INFO" "Copying $FILE to $HOME ..."
-        cp -- "$FILE" "$HOME"
-        log "SUCCESS" "Done!"
-    else
-        log "ERROR" "$FILE does not exist."
-    fi
-}
-
-# ----
 # Main
-# ----
 main() {
-    local GITATTRIBUTES="$PWD/git/.gitattributes"
-    local GITATTRIBUTES_EXISTING="$HOME/.gitattributes"
-    if [[ -e "$GITATTRIBUTES_EXISTING" ]]; then
-        log "WARNING" "Found existing: $GITATTRIBUTES_EXISTING"
-        confirm "Copy $GITATTRIBUTES to $HOME anyway?"
+    local GITATTR_LOCAL="$PWD/git/.gitattributes"
+    local GITATTR_HOME="$HOME/.gitattributes"
+    if [[ -e "$GITATTR_HOME" ]]; then
+        msg "WARNING" "Found existing: $GITATTR_HOME"
+        confirm "Copy $GITATTR_LOCAL to $GITATTR_HOME anyway?"
 
         if is_confirmed; then
-            copy $GITATTRIBUTES
-        fi
-    else 
-        copy $GITATTRIBUTES
-    fi
-
-    local GITCONFIG="$PWD/git/.gitconfig"
-    local GITCONFIG_EXISTING="$HOME/.gitconfig"
-    if [[ -e "$GITCONFIG_EXISTING" ]]; then
-        log "WARNING" "Found existing: $GITCONFIG_EXISTING"
-        confirm "Copy $GITCONFIG to $HOME anyway?"
-
-        if is_confirmed; then
-            copy $GITCONFIG
+            copy "$GITATTR_LOCAL" "$GITATTR_HOME"
+        else
+            msg "ERROR" "Ok, aborting..."
         fi
     else
-        copy $GITCONFIG
+        copy "$GITATTR_LOCAL" "$GITATTR_HOME"
     fi
 
-    local GITIGNORE="$PWD/git/.gitignore"
-    local GITIGNORE_EXISTING="$HOME/.gitignore"
-    if [[ -e "$GITIGNORE_EXISTING" ]]; then
-        log "WARNING" "Found existing: $GITIGNORE_EXISTING"
-        confirm "Copy $GITIGNORE to $HOME anyway?"
+    local GITCONFIG_LOCAL="$PWD/git/.gitconfig"
+    local GITCONFIG_HOME="$HOME/.gitconfig"
+    if [[ -e "$GITCONFIG_HOME" ]]; then
+        msg "WARNING" "Found existing: $GITCONFIG_HOME"
+        confirm "Copy $GITCONFIG_LOCAL to $GITCONFIG_HOME anyway?"
 
         if is_confirmed; then
-            copy $GITIGNORE
+            copy "$GITCONFIG_LOCAL" "$GITCONFIG_HOME"
+        else
+            msg "ERROR" "Ok, aborting..."
         fi
     else
-        copy $GITIGNORE
+        copy "$GITCONFIG_LOCAL" "$GITCONFIG_HOME"
+    fi
+
+    local GITIGNORE_LOCAL="$PWD/git/.gitignore"
+    local GITIGNORE_HOME="$HOME/.gitignore"
+    if [[ -e "$GITIGNORE_HOME" ]]; then
+        msg "WARNING" "Found existing: $GITIGNORE_HOME"
+        confirm "Copy $GITIGNORE_LOCAL to $GITIGNORE_HOME anyway?"
+
+        if is_confirmed; then
+            copy "$GITIGNORE_LOCAL" "$GITIGNORE_HOME"
+        else
+            msg "ERROR" "Ok, aborting..."
+        fi
+    else
+        copy "$GITIGNORE_LOCAL" "$GITIGNORE_HOME"
     fi
 }
 
