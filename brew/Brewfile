@@ -31,7 +31,7 @@ brew "gh"                           # https://formulae.brew.sh/formula/gh
 tap "heroku/brew"
 brew "heroku"                       # https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 tap "shopify/shopify"  
-brew "shopify-cli"                  # https://shopify.dev/themes/tools/cli/installation
+brew "shopify-cli@2"                # https://shopify.dev/themes/tools/cli/installation
 brew "ruby"                         # https://formulae.brew.sh/formula/ruby
 
 # ------------

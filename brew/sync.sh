@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# BREW INSTALL
-# - https://brew.sh/
-#
-# Example
-#   bash brew/install.sh
+# Run Brewfile
+# See: https://github.com/Homebrew/homebrew-bundle
+# 
+# Example:
+#   bash brew/sync.sh
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
 
 # Bash flags
 #  -e, exit on error
@@ -21,10 +20,14 @@ source "$PWD/lib/functions.sh"
 
 # Main
 main() {
-    if ! check brew; then
-        trace /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    local BREWFILE="$PWD/brew/Brewfile"
+    if [[ -e "$BREWFILE" ]]; then
+        trace brew update --auto-update
+        trace brew bundle --file brew/Brewfile
+        trace brew doctor
     else
-        msg "ERROR" "Brew already installed aborting..."
+        msg "ERROR" "No file found for $BREWFILE"
+        exit 1
     fi
 }
 
