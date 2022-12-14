@@ -37,6 +37,3 @@ main() {
 
 # Run
 main
-
-# Cleanup
-unset_functions

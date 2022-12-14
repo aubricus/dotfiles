@@ -13,14 +13,6 @@
 #   See lib/functions_tests.sh
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# Declarations 
-
-declare -a functions_h=("msg", "trace", "confirm", "is_confirmed", "check", "copy")
-
-unset_functions() {
-    unset ${functions_h[*]}
-}
-
 # Logging
 
 # Log a message with a pre-formatted "level".
