@@ -3,73 +3,40 @@
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # COPY CURL PREFS TO $HOME
 # - https://everything.curl.dev/cmdline/configfile
+#
+# Example
+#   bash curl/sync.sh
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# -e, exit on error
-# -u, unset variable is an error
-# -o pipefail, fail pipe chain if error
+# Bash flags
+#  -e, exit on error
+#  -u, unset variable is an error
+#  -o pipefail, fail pipe chain if error
+#  See: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -eu -o pipefail
 
-log() {
-    local LEVEL="$1"
-    local MESSAGE="$2"
+# Imports
+source "$PWD/lib/functions.sh"
 
-    if [[ "$LEVEL" = "INFO" ]]; then
-        printf "$(tput setaf 7)▸ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "WARNING" ]]; then
-        printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "ERROR" ]]; then
-        printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-    if [[ "$LEVEL" = "SUCCESS" ]]; then
-        printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$MESSAGE"
-    fi
-}
-
-confirm() {
-    log "WARNING" "$@"
-    read -p "$(tput setaf 7)▸ Please answer: (y/n) " -n 1
-    printf "\n"
-}
-
-is_confirmed() {
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        return 0
-    fi
-    return 1
-}
-
-copy() {
-    local FILE="$@"
-    if [[ -f "$FILE" ]]; then
-        log "INFO" "Copying $FILE to $HOME ..."
-        cp -- "$FILE" "$HOME"
-        log "SUCCESS" "Done!"
-    else
-        log "ERROR" "$FILE does not exist."
-    fi
-}
-
-# ----
 # Main
-# ----
 main() {
-    local CURLRC="$PWD/curl/.curlrc"
-    local CURLRC_EXISTING="$HOME/.curlrc"
-    if [[ -e "$CURLRC_EXISTING" ]]; then
-        log "WARNING" "Found existing: $CURLRC_EXISTING"
-        confirm "Copy $CURLRC to $HOME anyway?"
+    local CURLRC_LOCAL="$PWD/curl/.curlrc"
+    local CURLRC_HOME="$HOME/.curlrc"
+    if [[ -e "$CURLRC_HOME" ]]; then
+        msg "WARNING" "Found existing: $CURLRC_HOME"
+        confirm "Copy $CURLRC_LOCAL to $CURLRC_HOME anyway?"
         if is_confirmed; then
-            copy $CURLRC
+            copy $CURLRC_LOCAL $CURLRC_HOME
+        else
+            msg "ERROR" "Ok, aborting..."
         fi
     else
-        copy $CURLRC
+        copy $CURLRC_LOCAL $CURLRC_HOME
     fi
 }
 
-# ---
 # Run
-# ---
 main
+
+# Cleanup
+unset_functions
