@@ -35,7 +35,7 @@ bash brew/install.sh
 
 # Temporary setup needed to run Brewfile.
 #   NOTE: This will be overwritten when we sync ZSH prefs.
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME.zprofile"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Run Brewfile
