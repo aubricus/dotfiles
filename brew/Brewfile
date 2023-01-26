@@ -41,12 +41,14 @@ brew "ruby"                         # https://formulae.brew.sh/formula/ruby
 # Chrome cask does not have SHA set, install this manually
 # cask "google-chrome"              # https://formulae.brew.sh/cask/google-chrome
 
+# Gas mask cask does not have matching 256 sha, install this manually
+# cask "gas-mask"                     # https://formulae.brew.sh/cask/gas-mask
+
 cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
 cask "1password"                    # https://formulae.brew.sh/cask/1password
 cask "docker"                       # https://formulae.brew.sh/formula/docker
 cask "firefox"                       # https://formulae.brew.sh/cask/firefox
 cask "slack"                        # https://formulae.brew.sh/cask/slack
-cask "gas-mask"                     # https://formulae.brew.sh/cask/gas-mask
 cask "rectangle"                    # https://formulae.brew.sh/cask/rectangle
 cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
