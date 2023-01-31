@@ -22,7 +22,7 @@ source "$PWD/lib/functions.sh"
 # Main
 main() {
     if ! check brew; then
-        trace /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         msg "ERROR" "Brew already installed aborting..."
     fi
