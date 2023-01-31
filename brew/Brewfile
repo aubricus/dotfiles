@@ -32,7 +32,7 @@ tap "heroku/brew"
 brew "heroku"                       # https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 tap "shopify/shopify"  
 brew "shopify-cli@2"                # https://shopify.dev/themes/tools/cli/installation
-brew "shopify-cli"                  # https://shopify.dev/themes/tools/cli/install
+brew "shopify-cli@3"                # https://shopify.dev/themes/tools/cli/install
 brew "ruby"                         # https://formulae.brew.sh/formula/ruby
 brew "rbenv"                        # https://github.com/rbenv/rbenv
 brew "ruby-build"                   # https://github.com/rbenv/rbenv
