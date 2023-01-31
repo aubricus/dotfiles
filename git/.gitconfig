@@ -13,6 +13,7 @@
     tags = tag -l
     head = rev-parse HEAD
     ff = "!f() { git merge --ff-only ${1:-origin}/$(git rev-parse --abbrev-ref HEAD); }; f"
+    recommit = commit --amend --no-edit
 
 [color]
     # color opts: normal, black, red, green, yellow, blue, magenta, cyan, or white
