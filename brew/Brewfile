@@ -50,7 +50,7 @@ brew "ruby-build"                   # https://github.com/rbenv/rbenv
 # Skitch install failed, install this manually
 # cask "skitch"                       # https://formulae.brew.sh/cask/skitch
 
-cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
+cask "visual-studio-code"           # httwhics://formulae.brew.sh/cask/visual-studio-code
 cask "1password"                    # https://formulae.brew.sh/cask/1password
 cask "docker"                       # https://formulae.brew.sh/formula/docker
 cask "firefox"                       # https://formulae.brew.sh/cask/firefox
@@ -59,3 +59,4 @@ cask "rectangle"                    # https://formulae.brew.sh/cask/rectangle
 cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
 cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
+cask "postman"                      # https://formulae.brew.sh/cask/postman
