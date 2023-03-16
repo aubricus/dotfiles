@@ -60,3 +60,4 @@ cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
 cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
 cask "postman"                      # https://formulae.brew.sh/cask/postman
+cask "zoom"                         # https://formulae.brew.sh/cask/zoom
