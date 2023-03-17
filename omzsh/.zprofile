@@ -7,17 +7,3 @@
 # - https://www.zerotohero.dev/zshell-startup-files/
 # - https://linuxhint.com/what_is_dev_null/
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-# -------------------------------------
-# SSH AGENT
-# -------------------------------------
-
-# Setup
-eval "$(ssh-agent -s)" 1> /dev/null
-
-# -------------------------------------
-# BREW
-# -------------------------------------
-
-# Setup
-eval "$(/opt/homebrew/bin/brew shellenv)"
