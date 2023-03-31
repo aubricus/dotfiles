@@ -17,6 +17,11 @@ tap "homebrew/cask-versions"
 # CLI Installs 
 # ------------
 brew "zsh"                          # https://formulae.brew.sh/formula/zsh
+brew "readline"                     # https://formulae.brew.sh/formula/readline
+brew "gettext"                      # https://formulae.brew.sh/formula/gettext
+brew "xz"                           # https://formulae.brew.sh/formula/xz
+brew "gcc"                          # https://formulae.brew.sh/formula/gcc
+brew "zlib"                         # https://formulae.brew.sh/formula/zlib
 brew "coreutils"                    # https://formulae.brew.sh/formula/coreutils
 brew "curl"                         # https://formulae.brew.sh/formula/coreutils
 brew "git"                          # https://formulae.brew.sh/formula/curl
