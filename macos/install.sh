@@ -18,6 +18,9 @@ main() {
     # Rosetta helps some programs run on M1 architecture
     # https://support.apple.com/en-us/HT211861
     softwareupdate --install-rosetta
+
+    # XCode Select is needed for brew and others
+    xcode-select --install
 }
 
 # Run
