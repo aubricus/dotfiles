@@ -66,3 +66,5 @@ cask "zoom"                         # https://formulae.brew.sh/cask/zoom
 cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
 cask "postman"                      # https://formulae.brew.sh/cask/postman
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
+cask "notion"                       # https://formulae.brew.sh/cask/notion
+cask "discord"                      # https://formulae.brew.sh/cask/discord
