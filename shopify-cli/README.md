@@ -6,7 +6,10 @@ N/A, Shopify CLI v2 and v3 is installed via [Brewfile](../brew/Brewfile).
 
 ## Usage
 
-N/A
+```
+which shopify2
+which shopify3
+```
 
 ## Contributing
 
