@@ -4,7 +4,7 @@
 
 ## Install
 
-N/A, installed via [Brewfile](../brew/Brewfile).
+Installed via [Brewfile](../brew/Brewfile).
 
 ## Usage
 

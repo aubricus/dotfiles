@@ -4,29 +4,23 @@
 
 ## Install
 
-**Install [Pyenv](https://github.com/pyenv/pyenv)**
+- Installed via [Brewfile](../brew/Brewfile).
+- [Pyenv Docs](https://github.com/pyenv/pyenv)
 
-List available installs
-
-```bash
-pyenv install -l
-```
+## Usage
 
 Select the latest, stable version
 
 ```bash
-pyenv install 3.11.1
+pyenv install 3:latest
 ```
 
 Set as global
 
 ```bash
-pyenv global 3.11.1
+# Works best when only one version is installed.
+pyenv global $(pyenv versions --bare)
 ```
-
-## Usage
-
-N/A
 
 ## Contributing
 
