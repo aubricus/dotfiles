@@ -181,3 +181,11 @@ fi
 
 # Enable `code` from terminal
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+# -------------------------------------
+# BLUEUTIL
+# https://github.com/toy/blueutil
+# -------------------------------------
+
+alias bt="blueutil"
+alias unpair='cd "$HOME/Workspace/dotfiles/dotfiles" && bash ./blueutil/unpair.sh'

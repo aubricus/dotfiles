@@ -12,7 +12,6 @@
 
 cask_args appdir: "/Applications", require_sha: true
 
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "heroku/brew"
 tap "shopify/shopify"  
@@ -42,6 +41,7 @@ brew "wget"                         # https://formulae.brew.sh/formula/wget
 brew "xz"                           # https://formulae.brew.sh/formula/xz
 brew "zlib"                         # https://formulae.brew.sh/formula/zlib
 brew "zsh"                          # https://formulae.brew.sh/formula/zsh
+brew "blueutil"                     # https://formulae.brew.sh/formula/blueutil
 
 # -----
 # Casks 
@@ -49,7 +49,6 @@ brew "zsh"                          # https://formulae.brew.sh/formula/zsh
 
 cask "1password"                    # https://formulae.brew.sh/cask/1password
 cask "discord"                      # https://formulae.brew.sh/cask/discord
-cask "docker"                       # https://formulae.brew.sh/formula/docker
 cask "firefox"                       # https://formulae.brew.sh/cask/firefox
 cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
