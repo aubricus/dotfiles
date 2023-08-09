@@ -97,6 +97,13 @@ is_confirmed() {
 #   if check echo; then
 #       echo "The echo command igit s available!"
 #   fi
+# 
+# Example:
+#   if ! check brew; then
+#     echo "Brew is not available"
+#   else
+#     echo "Brew is available"
+#   fi
 #
 # See: https://stackoverflow.com/a/677212
 check() {
