@@ -15,6 +15,7 @@ N/A, installed via [Brewfile](../brew/Brewfile).
 ```bash
 bash blueutil/unpair.sh
 ```
+- **Note**: Also requires `jq`, see: [JQ](https://jqlang.github.io/jq/).
 
 ## Contributing
 
