@@ -42,6 +42,7 @@ brew "xz"                           # https://formulae.brew.sh/formula/xz
 brew "zlib"                         # https://formulae.brew.sh/formula/zlib
 brew "zsh"                          # https://formulae.brew.sh/formula/zsh
 brew "blueutil"                     # https://formulae.brew.sh/formula/blueutil
+brew "telnet"                       # https://formulae.brew.sh/formula/telnet
 
 # -----
 # Casks 
