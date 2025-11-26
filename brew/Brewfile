@@ -12,8 +12,6 @@
 
 cask_args appdir: "/Applications", require_sha: true
 
-tap "homebrew/cask-versions"
-tap "heroku/brew"
 tap "shopify/shopify"  
 
 # ------------
@@ -28,7 +26,6 @@ brew "direnv"                       # https://formulae.brew.sh/formula/direnv
 brew "git"                          # https://formulae.brew.sh/formula/curl
 brew "jq"                           # https://formulae.brew.sh/formula/jq
 brew "gh"                           # https://formulae.brew.sh/formula/gh
-brew "heroku"                       # https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 brew "openssl@3"                    # https://formulae.brew.sh/formula/openssl@3
 brew "pipx"                         # https://formulae.brew.sh/formula/pipx
 brew "pyenv"                        # https://formulae.brew.sh/formula/pyenv
@@ -43,6 +40,15 @@ brew "zlib"                         # https://formulae.brew.sh/formula/zlib
 brew "zsh"                          # https://formulae.brew.sh/formula/zsh
 brew "blueutil"                     # https://formulae.brew.sh/formula/blueutil
 brew "telnet"                       # https://formulae.brew.sh/formula/telnet
+
+# ------------
+# PPP Installs
+# ------------
+
+brew "cairo"                        # https://formulae.brew.sh/formula/cairo
+brew "pango"                        # https://formulae.brew.sh/formula/pango
+brew "gdk-pixbuf"                   # https://formulae.brew.sh/formula/gdk-pixbuf
+brew "libffi"                        # https://formulae.brew.sh/formula/libffi
 
 # -----
 # Casks 
