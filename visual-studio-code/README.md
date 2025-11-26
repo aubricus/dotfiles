@@ -16,6 +16,8 @@ Installed via [Brewfile](../brew/Brewfile).
 4. Select **Settings Sync: Turn On**
 5. Follow prompts and when asked, select **GitHub**
 
+_Remember to disable telemetry_
+
 ## Contributing
 
 N/A
