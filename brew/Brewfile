@@ -49,7 +49,7 @@ brew "go"
 brew "cairo"                        # https://formulae.brew.sh/formula/cairo
 brew "pango"                        # https://formulae.brew.sh/formula/pango
 brew "gdk-pixbuf"                   # https://formulae.brew.sh/formula/gdk-pixbuf
-brew "libffi"                        # https://formulae.brew.sh/formula/libffi
+brew "libffi"                       # https://formulae.brew.sh/formula/libffi
 
 # -----
 # Casks 
@@ -57,7 +57,7 @@ brew "libffi"                        # https://formulae.brew.sh/formula/libffi
 
 cask "1password"                    # https://formulae.brew.sh/cask/1password
 cask "discord"                      # https://formulae.brew.sh/cask/discord
-cask "firefox"                       # https://formulae.brew.sh/cask/firefox
+cask "firefox"                      # https://formulae.brew.sh/cask/firefox
 cask "iterm2"                       # https://formulae.brew.sh/cask/iterm2
 cask "kaleidoscope"                 # https://formulae.brew.sh/cask/kaleidoscope
 cask "notion"                       # https://formulae.brew.sh/cask/notion
@@ -66,3 +66,4 @@ cask "rectangle"                    # https://formulae.brew.sh/cask/rectangle
 cask "slack"                        # https://formulae.brew.sh/cask/slack
 cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
+cask "cursor"                       # https://formulae.brew.sh/cask/cursor
