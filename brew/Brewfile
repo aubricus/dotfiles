@@ -67,3 +67,4 @@ cask "slack"                        # https://formulae.brew.sh/cask/slack
 cask "visual-studio-code"           # https://formulae.brew.sh/cask/visual-studio-code
 cask "zoom"                         # https://formulae.brew.sh/cask/zoom
 cask "cursor"                       # https://formulae.brew.sh/cask/cursor
+cask "claude-code"                  # https://formulae.brew.sh/cask/claude-code
