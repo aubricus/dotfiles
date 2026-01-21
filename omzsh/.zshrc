@@ -115,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cleaner="npx -y mac-cleaner-cli"
 
 # -------------------------------------
 # AGNOSTER
@@ -181,11 +182,3 @@ fi
 
 # Enable `code` from terminal
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-
-# -------------------------------------
-# BLUEUTIL
-# https://github.com/toy/blueutil
-# -------------------------------------
-
-alias bt="blueutil"
-alias unpair='cd "$HOME/Workspace/dotfiles/dotfiles" && bash ./blueutil/unpair.sh'
