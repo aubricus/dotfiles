@@ -21,6 +21,20 @@ git clone https://github.com/aubricus/dotfiles.work
 
 ## Usage
 
+### Dotfiles Script
+
+This repository includes a unified script runner for easy access to all setup and sync scripts.
+
+Run the following to see all available commands and options:
+
+```bash
+bash dotfiles.sh --help
+```
+
+- After syncing the [omzsh/.zshrc](./omzsh/.zshrc) the script will be accessible at simply `dotfiles` (note: from dotfiles directory only).
+
+### Manual Setup
+
 1. [Setup Mac](./macos/README.md#install)
 2. [Setup Brew](./brew/README.md#install)
 3. [Setup Iterm](./iterm/README.md#install)

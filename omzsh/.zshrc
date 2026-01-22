@@ -117,6 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias cleaner="npx -y mac-cleaner-cli"
+alias dotfiles="bash $PWD/dotfiles.sh"
 
 # Generate a gitignore file
 function mkgitignore() {
