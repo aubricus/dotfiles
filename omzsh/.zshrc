@@ -115,7 +115,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias cleaner="npx -y mac-cleaner-cli"
+
+# Generate a gitignore file
+function mkgitignore() {
+    local defaults="linux,windows,macos,compressed,visualstudiocode,node,python,rust,ruby,go"
+    if [ -n "$*" ]; then
+        gi "$defaults,$@"
+    else
+        gi "$defaults"
+    fi
+}
+
 
 # -------------------------------------
 # AGNOSTER
@@ -182,3 +194,10 @@ fi
 
 # Enable `code` from terminal
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+# -------------------------------------
+# GITIGNORE
+# -------------------------------------
+
+# Enable `gi` to generate a gitignore file
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
