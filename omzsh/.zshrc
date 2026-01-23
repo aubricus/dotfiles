@@ -129,6 +129,23 @@ function mkgitignore() {
     fi
 }
 
+# Generate a .editorconfig file
+mkeditorconfig() {
+    cat << 'EOF'
+# EditorConfig is awesome: https://editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_size = 2
+indent_style = space
+EOF
+}
+
+
 
 # -------------------------------------
 # AGNOSTER
